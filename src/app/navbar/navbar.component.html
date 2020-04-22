@@ -1,0 +1,51 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">orgamenu</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Home </a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+      </li>
+      <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">S'enregistrer</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Connexion</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/accueil" class="nav-link" routerLink="accueil">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a href="/recette" class="nav-link" routerLink="recette">Recette</a>
+      </li>
+      <li class="nav-item">
+        <a href="/course" class="nav-link" routerLink="course">Santé</a>
+      </li>
+      <li class="nav-item">
+        <a href="/sante" class="nav-link" routerLink="sante">Santé</a>
+      </li>
+      <li class="nav-item">
+        <a href="/calendrier" class="nav-link" routerLink="calendrier">Calendrier</a>
+      </li>
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link close" (click)="logout()">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
