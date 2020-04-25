@@ -1,4 +1,4 @@
-export interface etapes {
+export interface Etapes {
   idEtape: number;
   etape: string;
 }

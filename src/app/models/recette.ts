@@ -4,6 +4,8 @@ export interface Recette {
   calorie: number;
   tempPreparation: number;
   tempCuisson: number;
+  userList: [],
   etapes: [];
   calendrierRecette: [];
 }
+

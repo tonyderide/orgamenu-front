@@ -6,10 +6,13 @@ import {ProfileComponent} from "./profile/profile.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
+import {RecetteDetailComponent} from "./recette-detail/recette-detail.component";
+
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'recette/:id' , component : RecetteDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

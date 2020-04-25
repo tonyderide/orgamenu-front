@@ -15,6 +15,9 @@ import { authInterceptorProviders} from '../helpers/ auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DataService} from "./shared/data.service";
+import { ListeRecetteComponent } from './liste-recette/liste-recette.component';
+import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BoardAdminComponent,
     BoardUserComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ListeRecetteComponent,
+    RecetteDetailComponent
 
   ],
   imports: [
@@ -38,7 +43,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NgbModule
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
