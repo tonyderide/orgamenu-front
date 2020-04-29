@@ -40,5 +40,13 @@ export class DataService {
       catchError(this.feedbackService.handleError<any>('deleteUser'))
     );
   }
+
+  getIngredientByIdService(id: string): Observable<Recette> {
+    const params = new HttpParams();
+    return this.http.get<Recette>(`${environment.apiUrl}/recette/${id}`, {params, headers}).pipe(
+      tap(_ => console.log('recuperation d\'une recette')), // TODO remove console
+      catchError(this.feedbackService.handleError<Recette>('getRecettesByIdService', ))
+    );
+  }
 }
 

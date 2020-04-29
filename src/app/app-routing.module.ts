@@ -7,13 +7,16 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {HomeComponent} from "./home/home.component";
 import {RecetteDetailComponent} from "./recette-detail/recette-detail.component";
+import {CalendarComponent} from "./calendar/calendar.component";
 
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'recette/:id' , component : RecetteDetailComponent },
+  { path: 'recette' , component : RecetteDetailComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'calendrier', component: CalendarComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },

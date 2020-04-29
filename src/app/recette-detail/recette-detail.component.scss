@@ -1,0 +1,56 @@
+#general{
+  display: flex;
+  justify-content: space-between;
+}
+
+#general2{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.recette {
+  align-content: stretch;
+  background-color: #969FAA;
+  border-radius: 5px;
+  width: 700px;
+  height: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.temps{
+  background-color: #969FAA;
+  border-radius: 5px;
+  width: 350px;
+  height: 300px;
+}
+
+.ingredients{
+  background-color: #969FAA;
+  border-radius: 5px;
+  width: 350px;
+  height: 400px;
+}
+
+.title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  resize: vertical;
+  overflow: auto;
+  margin-top: 2rem;
+}
+
+#scroll{
+  max-height:350px;
+}

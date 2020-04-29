@@ -1,0 +1,73 @@
+<div class="calendar">
+  <h6>Date:</h6>
+  <div class="date">
+    <p>{{todayMonth}}</p>
+    <div class="container datecol">
+      <app-line-calendrar [index]="0"></app-line-calendrar>
+      <app-line-calendrar [index]="1"></app-line-calendrar>
+      <app-line-calendrar [index]="2"></app-line-calendrar>
+      <app-line-calendrar [index]="3"></app-line-calendrar>
+      <app-line-calendrar [index]="4"></app-line-calendrar>
+      <app-line-calendrar [index]="5"></app-line-calendrar>
+      <app-line-calendrar [index]="6"></app-line-calendrar>
+    </div>
+  </div>
+
+  <h6>Ingrédient needed:</h6>
+  <div class="ingredientglobal">
+
+  </div>
+</div>
+
+
+<!--<div class="calendar">-->
+<!--  <h6>Date:</h6>-->
+<!--  <div class="date">-->
+<!--    <p>{{todayMonth}}</p>-->
+<!--    <div class="container datecol">-->
+<!--      <div class="container jourSemaine">-->
+<!--        <pre *ngFor="let jour of weekJour">{{jour}}:</pre>-->
+<!--      </div>-->
+<!--      <div class="container jourSemaine">-->
+<!--        <pre *ngFor="let jour of weekDate">{{jour| date:'dd'}}></pre>-->
+<!--      </div>-->
+<!--      <div class="container selectMatin">-->
+
+<!--         <form #f="ngForm">-->
+<!--        <select name="recette"-->
+<!--                (change)="onChange($event.target.value)"-->
+<!--                [value]="number"-->
+<!--                [ngModel]="recette"-->
+<!--                *ngFor="let number of nbDeBoutton;index as i;"-->
+<!--                class="browser-default custom-select"-->
+<!--                [attr.id]="'matin ' +i">-->
+<!--          <option [ngValue]="null">Sélectionner une recette pour le Déjeuner</option>-->
+<!--          <option *ngFor="let recette of recettes" >-->
+<!--            {{ recette.name }}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </form>-->
+
+<!--      </div>-->
+<!--      <div class="container selectAprem">-->
+
+<!--        <form #f="ngForm">-->
+<!--          <select name="recette"-->
+<!--                  [ngModel]="recette"-->
+<!--                  *ngFor="let number of [1,2,3,4,5,6,7]"-->
+<!--                  class="browser-default custom-select">-->
+<!--            <option [ngValue]="null">Sélectionner une recette pour le Diner</option>-->
+<!--            <option *ngFor="let recette of recettes" [ngValue]="recette">-->
+<!--              {{ recette.name }}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--        </form>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="ingredientglobal">-->
+<!--  <h6>Ingrédients global:</h6>-->
+
+<!--  </div>-->
+<!--</div>-->

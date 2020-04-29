@@ -1,0 +1,41 @@
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  width:1096px;
+}
+.jourAlpha{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  width: 110px;
+
+}
+p{
+  margin-bottom: 8px;
+  margin-top: 8px;
+  text-align: left;
+}
+form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.selectMidi{
+  width: 400px;
+  height: 25px;
+}
+.selectSoir{
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  height: 25px;
+}
+.bouton{
+  width: 40px;
+  height: 40px;
+
+}

@@ -1,0 +1,52 @@
+<div id="general">
+  <div>
+    <div class="container recette">
+      <div class="title">
+        <h3>{{recette?.name}}</h3>
+        <p>Calories: {{recette?.calorie}} par 100 grammes</p>
+      </div>
+      <div>
+        <img src="../../assets/img/lasagne.jpg" alt="photo de lasagne">
+      </div>
+      <div class="container" >
+        <div id="scroll" style="overflow-y: scroll;">
+<!--          <p *ngFor="let etape of etapes">{{etape.idEtape}}-{{etape.etape|json}}</p>-->
+          <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+              <th scope="col">n°</th>
+              <th scope="col">etapes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let etape of etapes">
+              <th scope="row">{{etape.numero}}</th>
+              <td>{{etape.etape|json}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--conteneur temps-->
+  <div id="general2">
+    <div class="container temps">
+      <div class="preparation">
+        <h2>Preparation:</h2>
+        <h2>{{recette?.tempPreparation}} MIN</h2>
+      </div>
+      <div class="cuisson">
+        <h2>Cuisson:</h2>
+        <h2>{{recette?.tempCuisson}} MIN</h2>
+      </div>
+    </div>
+<!--conteneur ingredients    -->
+    <div class="container ingredients">
+      <div class="ingredients">
+        <h2>Ingrédients:</h2>
+        <div class="ingredient"*ngFor="let ingredient of ingredients">{{ingredient.quantity}} {{ingredient.nomIngredient}}</div>
+      </div>
+    </div>
+  </div>
+</div>

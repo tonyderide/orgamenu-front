@@ -1,0 +1,26 @@
+<div class="row" >
+  <div class="jourAlpha">
+    <p>{{JourAlph}}: {{JourNum}} </p>
+  </div>
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit(buttonType)">
+    <div class="selectMidi">
+      <select formControlName="recetteMidi"
+              class="browser-default custom-select form-control-sm">
+        <option *ngFor="let recette of recettes" [ngValue]="recette">
+          {{ recette.name }}
+        </option>
+      </select>
+    </div>
+    <div class="selectSoir">
+      <select formControlName="recetteSoir"
+              class="browser-default custom-select form-control-sm">
+        <option *ngFor="let recette of recettes" [ngValue]="recette">
+          {{ recette.name }}
+        </option>
+      </select>
+      <button type="submit" (click)="onSubmit('save')" class="btn btn-primary bouton"><i class="fa fa-save"></i></button>
+      <button type="submit" (click)="onSubmit('update')"class="btn btn-primary bouton"><i class="fa fa-save"></i></button>
+    </div>
+  </form>
+</div>
+

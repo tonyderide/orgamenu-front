@@ -1,0 +1,33 @@
+calendar{
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+}
+
+.date {
+  background-color: #BDE0DE;
+  border: 1px solid #8492A6;
+  border-radius: 5px;
+  width: 1096px;
+  height: 350px;
+
+}
+.datecol{
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-around;
+}
+
+.ingredientglobal{
+  background-color: #BDE0DE;
+  border: 1px solid #8492A6;
+  border-radius: 5px;
+  width: 1096px;
+  height: 300px;
+}
+h6{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
