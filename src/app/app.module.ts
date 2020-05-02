@@ -20,6 +20,7 @@ import { ListeRecetteComponent } from './liste-recette/liste-recette.component';
 import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LineCalendrarComponent } from './calendar/line-calendrar/line-calendrar.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { LineCalendrarComponent } from './calendar/line-calendrar/line-calendrar
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
 
   ],
   providers: [authInterceptorProviders, DataService],

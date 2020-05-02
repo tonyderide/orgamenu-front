@@ -11,7 +11,7 @@ import {DataService} from "../../shared/data.service";
   styleUrls: ['./line-calendrar.component.scss']
 })
 export class LineCalendrarComponent implements OnInit {
-  @Input() index:number;
+  @Input('indexDate') index:number;
   //init date en fr propre à momentjs
   momentLocal= moment.locale('fr');
   dataForm: FormGroup;

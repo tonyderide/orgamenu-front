@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {TokenStorageService} from '../../services/token-storage.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @Input()deviceXs:boolean;
+  public isMenuCollapsed = true;
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;

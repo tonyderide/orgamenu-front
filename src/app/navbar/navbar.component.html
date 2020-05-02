@@ -1,52 +1,49 @@
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">orgamenu</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Accueil </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
-    </ul>
-
+<nav nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-auto">
+  <a href="#" class="navbar-brand">Orgamenu</a>
+  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <li class="nav-item" *ngIf="showAdminBoard">
+      <a  class="nav-link" routerLink="admin"><i class="fa fa-user-secret"></i></a>
+    </li>
+  </ul>
+  <button class="navbar-toggler ml-auto" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+  <nav [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">S'enregistrer</a>
+        <a class="nav-link" routerLink="register" (click)="isMenuCollapsed = true"><i class="fa fa-user-plus fa-lg"> </i>S'enregistrer</a>
       </li>
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Connexion</a>
+        <a class="nav-link" routerLink="login" (click)="isMenuCollapsed = true"><i class="fa fa-sign-in fa-lg"> </i>Connexion</a>
       </li>
     </ul>
-
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Accueil</a>
+        <a  class="nav-link" routerLink="home" (click)="isMenuCollapsed = true">Accueil</a>
       </li>
       <li class="nav-item">
-        <a href="/recette" class="nav-link" routerLink="recette">Recette</a>
+        <a  class="nav-link" routerLink="recette" (click)="isMenuCollapsed = true">Recette</a>
       </li>
       <li class="nav-item">
-        <a href="/course" class="nav-link" routerLink="course">Course</a>
+        <a  class="nav-link" routerLink="course" (click)="isMenuCollapsed = true">Course</a>
       </li>
       <li class="nav-item">
-        <a href="/sante" class="nav-link" routerLink="sante">Santé</a>
+        <a  class="nav-link" routerLink="sante" (click)="isMenuCollapsed = true">Santé</a>
       </li>
       <li class="nav-item">
-        <a href="/calendrier" class="nav-link" routerLink="calendrier">Calendrier</a>
+        <a  class="nav-link" routerLink="calendrier" (click)="isMenuCollapsed = true">Calendrier</a>
       </li>
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        <a  class="nav-link" routerLink="profile" (click)="isMenuCollapsed = true">{{ username }}</a>
       </li>
       <li class="nav-item">
         <a href class="nav-link close" (click)="logout()">
-          <span aria-hidden="true">&times;</span>
+          <i class="fa fa-sign-out" ></i>
         </a>
       </li>
     </ul>
   </nav>
-</div>
+</nav>
+
+
 <div class="container p-3 my-3 text-white"></div>
