@@ -1,20 +1,26 @@
 <div class="row" >
   <div class="jourAlpha">
-    <p>{{JourAlph}}: {{JourNum}} </p>
+<!--    <p>{{JourAlph}}: {{JourNum}} </p>-->
+    <p>{{todayDate | date:"EEEE" | titlecase}}: {{todayDate | date:"dd"}} </p>
+
   </div>
-  <form [formGroup]="dataForm" (ngSubmit)="onSubmit(buttonType)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(buttonType)">
     <div class="selectMidi">
-      <select formControlName="recetteMidi"
-              class="browser-default custom-select form-control-sm">
-        <option *ngFor="let recette of recettes" [ngValue]="recette">
+      <select [compareWith]="compareFn"
+              class="browser-default custom-select form-control-sm"
+              formControlName="recetteMidi">
+        <option  [ngValue]="">{{recetteToSaveMidi?.name}}</option>
+        <option *ngFor="let recette of recettes" [ngValue]="recette.idRecette">
           {{ recette.name }}
         </option>
       </select>
     </div>
     <div class="selectSoir">
-      <select formControlName="recetteSoir"
+      <select  [compareWith]="compareFn"
+               formControlName="recetteSoir"
               class="browser-default custom-select form-control-sm">
-        <option *ngFor="let recette of recettes" [ngValue]="recette">
+        <option  [ngValue]="null">{{recetteToSaveSoir?.name}}</option>
+        <option *ngFor="let recette of recettes" [ngValue]="recette.idRecette">
           {{ recette.name }}
         </option>
       </select>

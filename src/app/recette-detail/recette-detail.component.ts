@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {DataService} from "../shared/data.service";
+import {DataService} from "../shared/services/data.service";
 import {Recette} from "../models/recette";
 import {Etapes} from "../models/etapes";
 import {Ingredient} from "../models/ingredient";
@@ -18,7 +18,7 @@ export class RecetteDetailComponent implements OnInit {
   public recette: Recette;
   public etapes:Etapes[];
   public ingredients:Ingredient[];
-  public calendrier:Calendrier[];
+  public calendriers:Calendrier[];
 
   ngOnInit(): void {
     const idUrl = this.route.snapshot.paramMap.get('id');
@@ -30,7 +30,7 @@ export class RecetteDetailComponent implements OnInit {
       this.recette = recette;
       this.etapes = recette.etapes;
       this.ingredients=recette.ingredients;
-      this.calendrier=recette.calendrier;
+      this.calendriers=recette.calendriers;
       console.log(this.recette)
       console.log(this.etapes)
       console.log(this.ingredients)

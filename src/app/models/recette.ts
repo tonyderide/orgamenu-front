@@ -10,8 +10,9 @@ export interface Recette {
   tempCuisson: number;
   userList: [],
   etapes: Array<Etapes>;
-  calendrier: Array<Calendrier>;
+  calendriers: Array<Calendrier>;
   ingredients:Array<Ingredient>;
+  imageUrl:string;
 }
 
 

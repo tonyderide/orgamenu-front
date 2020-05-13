@@ -12,5 +12,5 @@ export interface User {
   age: number;
   sexe: number;
   roles: [];
-  recette: Array<Recette>;
+  recettes:Recette[];
 }

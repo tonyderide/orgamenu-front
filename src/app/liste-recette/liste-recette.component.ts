@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Recette} from "../models/recette";
 
-import {UserService} from "../../services/user.service";
-import {DataService} from "../shared/data.service";
+import {UserService} from "../shared/services/user.service";
+import {DataService} from "../shared/services/data.service";
 
 
 @Component({
@@ -23,7 +23,6 @@ export class ListeRecetteComponent implements OnInit {
   getRecettes(){
     this.data.getRecettesService().subscribe(recettes => {
       this.recettes = recettes;
-      console.log(this.recettes)
     });
   }
   getEtapes(){

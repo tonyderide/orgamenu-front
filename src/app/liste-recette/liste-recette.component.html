@@ -1,14 +1,28 @@
-<div class="container">
-  <header class="jumbotron">
-    <h1>Proposition du Jour</h1>
+<div class="container" fxLayoutAlign="center center">
+  <header class="">
+    <h5>Proposition du Jour</h5>
   </header>
+</div >
+
+<div class="container" fxLayoutAlign="center center">
+  <div class="my-flex-container"
+       fxLayout="row wrap"
+       fxLayout.lt-sm="column"
+       fxLayoutGap="10px grid"
+       fxLayoutAlign="start">
+    <ng-container  *ngFor="let recette of recettes">
+      <div class="card" style="width:200px">
+        <img class="card-img-top" [src]="recette.imageUrl" [alt]="recette.name" >
+        <div class="card-img-overlay">
+          <a routerLink="/recette/{{recette.idRecette}}" class="stretched-link"></a>
+        </div>
+          <h4 class="card-title">{{recette.name}}</h4>
+      </div>
+    </ng-container>
+
+  </div>
 </div>
-<div class="conteneur">
-  <button *ngFor="let recette of recettes | slice:0:10"
-          class="btn btn-primary"
-          routerLink="/recette/{{recette.idRecette}}">{{recette.name}}
-  </button>
-</div>
+
 
 
 

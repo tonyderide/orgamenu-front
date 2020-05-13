@@ -5,7 +5,7 @@ calendar{
 }
 
 .date {
-  background-color: #BDE0DE;
+  background-color: whitesmoke;
   border: 1px solid #8492A6;
   border-radius: 5px;
   width: 1096px;
@@ -20,7 +20,7 @@ calendar{
 }
 
 .ingredientglobal{
-  background-color: #BDE0DE;
+  background-color: whitesmoke;
   border: 1px solid #8492A6;
   border-radius: 5px;
   width: 1096px;
@@ -31,3 +31,12 @@ h6{
   margin-bottom: 8px;
 }
 
+app-ingredients{
+  border: black 1px solid;
+  width: 350px;
+}
+
+app-selected-recettetoday{
+  border: black 1px solid;
+  width: 350px;
+}
