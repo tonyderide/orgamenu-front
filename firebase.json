@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "orgamenu-front",
+      "public": "dist/orgamenu-front",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
