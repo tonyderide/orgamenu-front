@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import * as jwt_decode from 'jwt-decode';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
@@ -7,6 +7,8 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
+  private token: string;
+  private decodedToken;
 
   constructor() { }
 
@@ -32,4 +34,8 @@ export class TokenStorageService {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
 
+  public isValidToken(){
+    this.token = sessionStorage.getItem(TOKEN_KEY);
+    this.decodedToken=jwt_decode(this.token);
+  }
 }

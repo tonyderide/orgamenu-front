@@ -1,1 +1,21 @@
-<h1>coucou!</h1>
+<div class="container titre" fxLayoutAlign="center center">
+  <header class="header">
+    <h5>Ingredients souhaité</h5>
+  </header>
+</div >
+<form>
+  <div class="form-group">
+    <div class="container carte" fxLayoutAlign="end center">
+      <div class="my-flex-contain"
+           fxLayoutAlign="start">
+        <div>
+          <ng-container class="switchbox" *ngFor="let allergene of allergenes;let i = index">
+            <div class="custom-control custom-switch" fxLayout="col" fxLayoutAlign=" center" >
+              <input type="checkbox" class="custom-control-input" id="{{ 'customSwitch' + i }}" checked>
+              <label class="custom-control-label" for="{{ 'customSwitch' + i }}" >{{allergene.name}}</label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>

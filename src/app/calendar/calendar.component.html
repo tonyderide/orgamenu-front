@@ -1,19 +1,21 @@
 <div class="calendar">
-  <h6>Date:</h6>
-  <div class="date">
-    <p>{{todayMonth | date:"MMMM" |titlecase}}<p>
+  <h4> <p>{{todayMonth | date:"MMMM" |titlecase}}:<p></h4>
+  <div class="date" fxLayout="column" fxLayoutAlign="center none">
+
     <div class="container datecol">
-    <app-line-calendrar  *ngFor="let index of indexDateList" [indexDate]="index"></app-line-calendrar>
+    <app-line-calendrar  *ngFor="let index of indexDateList"
+                         [indexDate]="index"
+                         (valueUpdate)="getUpdatedvalue()"
+                         (deleteChild)="deleteChild()"></app-line-calendrar>
 
     </div>
   </div>
-  <h6>Ingrédient needed:</h6>
-  <div class="container ingredientglobal"
+  <h6></h6>
+  <div class=" ingredientglobal"
        fxLayout="row wrap"
        fxLayout.lt-sm="column"
-       fxLayoutGap="10px"
-       fxLayoutAlign="space-evenly stretch" >
-    <app-ingredients fxFlex="45"></app-ingredients>
-    <app-selected-recettetoday  fxFlex="45"></app-selected-recettetoday>
+       fxLayoutAlign="space-between stretch" >
+    <app-ingredients fxFlex="49"></app-ingredients>
+    <app-selected-recettetoday  fxFlex="49" [recettes]="recettes"></app-selected-recettetoday>
   </div>
 </div>

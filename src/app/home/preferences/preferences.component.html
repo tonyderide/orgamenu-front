@@ -1,1 +1,48 @@
-<p>preferences works!</p>
+<div class="titleOut"  fxLayout="col" ></div>
+<!--button du modal-->
+<div>
+<a type="button" class="btn btn-primary modalbutton" data-toggle="modal" data-target="#preferences">
+  Preferences
+</a>
+</div>
+<!--le modal-->
+<div class="modal fade" id="preferences" tabindex="-1" role="dialog" aria-labelledby="liste de préférence" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingredients souhaités</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container carte" fxLayoutAlign="end center">
+          <div class="my-flex-contain"
+               fxLayoutAlign="center">
+            <form [formGroup]="preferencesForm" (ngSubmit)="onSubmit()">
+              <div class="custom-control custom-switch"
+                   fxLayout="row" fxLayoutAlign=" center "
+                   *ngFor="let preference of getPreferenceArrayControls(); let i=index">
+                <input fxFlex="70" type="checkbox"
+                       class="custom-control-input"
+                       id="{{ 'customSwitch' + i }}"
+                       [formControl]="preference"
+                       checked>
+                <label fxFlex="30" class="custom-control-label"
+                       for="{{ 'customSwitch' + i }}">{{preferenceOptions[i]}}</label>
+              </div>
+              {{preferencesForm.value|json}}
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="button submitmodal" (click)='onSubmit()'  class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

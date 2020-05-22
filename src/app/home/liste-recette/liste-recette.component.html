@@ -1,29 +1,27 @@
-<div class="container" fxLayoutAlign="center center">
-  <header class="">
+<div class="container titre" fxLayoutAlign="center center">
+  <header class="header">
     <h5>Proposition du Jour</h5>
   </header>
 </div >
 
-<div class="container" fxLayoutAlign="center center">
+<div class="container cartes" fxLayout="row wrap"   >
   <div class="my-flex-container"
        fxLayout="row wrap"
        fxLayout.lt-sm="column"
        fxLayoutGap="10px grid"
-       fxLayoutAlign="start">
-    <ng-container  *ngFor="let recette of recettes">
-      <div class="card" style="width:200px">
+       fxLayoutAlign="space-around start">
+    <div  class="carte" *ngFor="let recette of recettes" >
+      <div class="card">
         <img class="card-img-top" [src]="recette.imageUrl" [alt]="recette.name" >
         <div class="card-img-overlay">
           <a routerLink="/recette/{{recette.idRecette}}" class="stretched-link"></a>
         </div>
           <h4 class="card-title">{{recette.name}}</h4>
       </div>
-    </ng-container>
+    </div>
 
   </div>
 </div>
-
-
 
 
 

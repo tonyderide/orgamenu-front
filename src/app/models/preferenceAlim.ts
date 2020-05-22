@@ -1,4 +1,4 @@
 export interface PreferenceAlim {
-  idPreferenceAliment?: number;
+  idPreferenceAliment: number;
   nomPreferenceAliment: string ;
 }

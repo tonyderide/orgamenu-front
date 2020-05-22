@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../shared/services/user.service';
+import {DataService} from "../shared/services/data.service";
+import {FormBuilder} from "@angular/forms";
+import {Allergene} from "../models/allergene";
 
 @Component({
   selector: 'app-board-user',
@@ -7,20 +9,31 @@ import {UserService} from '../shared/services/user.service';
   styleUrls: ['./board-user.component.scss']
 })
 export class BoardUserComponent implements OnInit {
-  content = '';
+  allergenes: Allergene[];
 
-  constructor(private userService: UserService) { }
+  constructor(private data:DataService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
+  this.getIngredients();
   }
 
+  getIngredients() {
+    this.data.getAllergene().subscribe(allergenes => this.allergenes = allergenes)
+  }
 
+  buttonType: string;
+  onSubmit(buttonType: string) {
+    if (buttonType==='save'){this.saveDate()}
+    if (buttonType==='update'){this.delete()}
+
+  }
+
+  private saveDate() {
+
+  }
+
+  private delete() {
+
+  }
 }

@@ -15,7 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from "./shared/services/data.service";
-import { ListeRecetteComponent } from './liste-recette/liste-recette.component';
+import { ListeRecetteComponent } from './home/liste-recette/liste-recette.component';
 import { RecetteDetailComponent } from './recette-detail/recette-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { LineCalendrarComponent } from './calendar/line-calendrar/line-calendrar.component';
@@ -27,6 +27,8 @@ import { RoleGuardService } from "./shared/services/role-guard.service";
 import { ToastComponent } from './toast/toast.component';
 import { AppInitService } from "./app-init.service.ts.service";
 import { APP_INITIALIZER } from '@angular/core';
+import { LoadingComponent } from './loading/loading.component';
+import { PreferencesComponent } from './home/preferences/preferences.component';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): void => {
@@ -51,7 +53,9 @@ export function initializeApp(appInitService: AppInitService) {
     LineCalendrarComponent,
     IngredientsComponent,
     SelectedRecettetodayComponent,
-    ToastComponent
+    ToastComponent,
+    LoadingComponent,
+    PreferencesComponent
 
   ],
   imports: [

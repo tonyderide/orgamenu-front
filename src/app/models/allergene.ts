@@ -1,7 +1,7 @@
 import {User} from "./user";
 
-export interface Allergenes {
+export interface Allergene {
   id: number;
   name: string;
-  users:User[];
+  user: User[];
 }

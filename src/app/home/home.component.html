@@ -1,1 +1,11 @@
-<app-liste-recette></app-liste-recette>
+<div class="container d-flex flex-row" >
+  <app-liste-recette></app-liste-recette>
+  <app-preferences *ngIf="isloggedIn" (reload)="reload()" ></app-preferences>
+</div>
+
+
+
+
+
+
+

@@ -2,15 +2,16 @@ calendar{
   display: flex;
   flex-direction: column;
   height: 700px;
+
 }
 
 .date {
   background-color: whitesmoke;
   border: 1px solid #8492A6;
-  border-radius: 5px;
+  border-radius: 25px;
   width: 1096px;
   height: 350px;
-
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
 }
 .datecol{
   display: flex;
@@ -20,23 +21,29 @@ calendar{
 }
 
 .ingredientglobal{
-  background-color: whitesmoke;
-  border: 1px solid #8492A6;
-  border-radius: 5px;
+
   width: 1096px;
   height: 300px;
 }
-h6{
+h4{
   margin-top: 8px;
   margin-bottom: 8px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 25px;
 }
 
 app-ingredients{
   border: black 1px solid;
-  width: 350px;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
+  border-radius: 25px;
+  width: 548px;
 }
 
 app-selected-recettetoday{
-  border: black 1px solid;
-  width: 350px;
+  background-color: #fffffe;
+  border-radius: 25px;
+  width: 548px;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
+
 }

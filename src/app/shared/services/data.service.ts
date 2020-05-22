@@ -7,6 +7,9 @@ import {Recette} from "../../models/recette";
 import {FeedbackService} from "./feedback.service";
 import {User} from "../../models/user";
 import {Calendrier} from "../../models/calendrier";
+import {Ingredient} from "../../models/ingredient";
+import {Allergene} from "../../models/allergene";
+import {PreferenceAlim} from '../../models/preferenceAlim';
 
 const headers = new HttpHeaders().set('Accept', 'application/json');
 const params = new HttpParams();
@@ -33,7 +36,7 @@ export class DataService {
     );
   }
 
-  getRecettesByUserAndUsercontext():Observable<Recette[]>{
+    getRecettesByUserAndContext():Observable<Recette[]>{
     return this.http.get<Recette[]>(urlEnv+'/recettes/datesuser',{params, headers}).pipe(
       tap(_ => console.log('recuperation liste de recette user de toutes les dates selectionner')), // TODO remove console
       catchError(this.feedbackService.handleError<Recette[]>( 'getRecettesService', []))
@@ -57,14 +60,6 @@ export class DataService {
     )
   }
 
-/////////////////////////////////////////////////////////////////////////////////////
-  //endpoints des Ingrédients
-  getIngredientByIdService(id: string): Observable<Recette> {
-    return this.http.get<Recette>(`${environment.apiUrl}/recette/${id}`, {params, headers}).pipe(
-      tap(_ => console.log('recuperation d\'une recette')), // TODO remove console
-      catchError(this.feedbackService.handleError<Recette>('getRecettesByIdService' ))
-    );
-  }
 
 /////////////////////////////////////////////////////////////////////////////////////
 //endpoints des calendriers
@@ -94,12 +89,14 @@ export class DataService {
 
   saveCalendrierService(date,idRecette?:string): Observable<Calendrier>{
     if(date.idCalendrier){
-      const url = `${environment.apiUrl}/calendrierrecettes/${idRecette.toString()}`;
+      console.log('update')
+      const url = `${environment.apiUrl}/calendrierrecettes?id=${idRecette.toString()}`;
       return this.http.put<Calendrier>(url,date, {headers, params}).pipe(
         tap(_ => this.feedbackService.info.next(`calendrier mis à jour`)),
-        catchError(this.feedbackService.handleError<Calendrier>('saveCalendrierService'))
+        catchError(this.feedbackService.handleError<Calendrier>('upadteCalendrier'))
       );
     }else{
+      console.log('save')
       const url=`${environment.apiUrl}/calendrierrecettes/${idRecette.toString()}`;
       return this.http.post<Calendrier>(url,date, {params,headers}).pipe(
       tap(_ => this.feedbackService.info.next(`calendrier créer`)), // TODO remove console
@@ -107,11 +104,12 @@ export class DataService {
     )}
   }
 
+
   deleteCalendrier(calendrier:Calendrier) {
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: calendrier };
 
     let url = `${environment.apiUrl}/calendrierrecettes/`;
-    return this.http.delete(url,httpOptions).pipe(
+    return this.http.delete(url, httpOptions).pipe(
       tap(_ => this.feedbackService.info.next(`date ${calendrier.date} deleted`)),
       catchError(this.feedbackService.handleError<any>('deleteCalendrier'))
     );
@@ -123,4 +121,47 @@ export class DataService {
       catchError(this.feedbackService.handleError<any>('initDeleteCalendrier'))
     );
   }
+
+/////////////////////////////////////////////////////////////////////////////////////
+//endpoints des ingrédients
+/////////////////////////////////////////////////////////////////////////////////////
+  getIngredients(): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${environment.apiUrl}/ingredients/`, {params, headers}).pipe(
+      catchError(this.feedbackService.handleError<Ingredient[]>('getIngredients', []))
+    );
+  }
+
+  getIngredientByIdService(id: string): Observable<Recette> {
+    return this.http.get<Recette>(`${environment.apiUrl}/recette/${id}`, {params, headers}).pipe(
+      tap(_ => console.log('recuperation d\'une recette')), // TODO remove console
+      catchError(this.feedbackService.handleError<Recette>('getRecettesByIdService'))
+    );
+  }
+/////////////////////////////////////////////////////////////////////////////////////
+//endpoints des allergenes
+/////////////////////////////////////////////////////////////////////////////////////
+  getAllergene(): Observable<Allergene[]>{
+    return this.http.get<Allergene[]>(`${environment.apiUrl}/allergenes/`, {params, headers}).pipe(
+      catchError(this.feedbackService.handleError<Allergene[]>('getAllergene', []))
+    );
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////
+//endpoints des preferences
+/////////////////////////////////////////////////////////////////////////////////////
+  getPreferences(): Observable<PreferenceAlim[]>{
+    return this.http.get<PreferenceAlim[]>(`${environment.apiUrl}/preferences/`, {params, headers}).pipe(
+      catchError(this.feedbackService.handleError<PreferenceAlim[]>('getPreferences', []))
+    );
+  }
+
+  updatePreferencesService(Preferences:PreferenceAlim[]):Observable<PreferenceAlim[]> {
+
+    const url = `${environment.apiUrl}/preferences/`;
+    return this.http.put<PreferenceAlim[]>(url, Preferences, {headers, params}).pipe(
+      tap(_ => this.feedbackService.info.next(`preference mise à jour`)),
+      catchError(this.feedbackService.handleError<PreferenceAlim[]>('updatePreferences'))
+    );
+  }
+
 }

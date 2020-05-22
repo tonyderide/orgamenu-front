@@ -1,0 +1,14 @@
+<div class="box1" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" >
+  <div class="recetteBox" fxLayout="column" >
+      <h5>recette midi</h5>
+      <p class="m-0" *ngFor="let ingredient of ingredientsMidi;let i = index"
+         [class.myColorClass]="i % 2 == 0">
+         {{ingredient.quantity}} {{ingredient.nomIngredient}}</p>
+  </div>
+  <div class="recetteBox2" fxLayout="column">
+    <h5>recette soir</h5>
+    <p class="m-0" *ngFor="let ingredient of ingredientsSoir;let i = index"
+       [class.myColorClass]="i % 2 == 0">
+      {{ingredient.quantity}} {{ingredient.nomIngredient}}</p>
+  </div>
+</div>

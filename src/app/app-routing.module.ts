@@ -19,7 +19,7 @@ const routes: Routes = [
     canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'calendrier', component: CalendarComponent,
-    canActivate: [AuthGuard]  },
+   canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent,
     canActivate: [AuthGuard] },

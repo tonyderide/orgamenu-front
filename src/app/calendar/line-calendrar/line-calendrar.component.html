@@ -1,3 +1,4 @@
+
 <div class="row" >
   <div class="jourAlpha">
 <!--    <p>{{JourAlph}}: {{JourNum}} </p>-->
@@ -6,27 +7,25 @@
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit(buttonType)">
     <div class="selectMidi">
-      <select [compareWith]="compareFn"
-              class="browser-default custom-select form-control-sm"
-              formControlName="recetteMidi">
-        <option  [ngValue]="">{{recetteToSaveMidi?.name}}</option>
-        <option *ngFor="let recette of recettes" [ngValue]="recette.idRecette">
+      <select class="browser-default custom-select form-control-sm"
+              formControlName="recetteMidi" required>
+        <option  [value]="">Recette Midi</option>
+        <option *ngFor="let recette of recettes" [value]="recette.idRecette">
           {{ recette.name }}
         </option>
       </select>
     </div>
     <div class="selectSoir">
-      <select  [compareWith]="compareFn"
-               formControlName="recetteSoir"
+      <select formControlName="recetteSoir" required
               class="browser-default custom-select form-control-sm">
-        <option  [ngValue]="null">{{recetteToSaveSoir?.name}}</option>
-        <option *ngFor="let recette of recettes" [ngValue]="recette.idRecette">
+        <option  [value]="">Recette Soir</option>
+        <option *ngFor="let recette of recettes" [value]="recette.idRecette">
           {{ recette.name }}
         </option>
       </select>
-      <button type="submit" (click)="onSubmit('save')" class="btn btn-primary bouton"><i class="fa fa-save"></i></button>
-      <button type="submit" (click)="onSubmit('update')"class="btn btn-primary bouton"><i class="fa fa-pencil"></i></button>
+      <button type="submit" [disabled]="form.invalid" (click)="onSubmit('save')" class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="update or save"><i class="fa fa-save"></i></button>
+      <button type="submit" (click)="onSubmit('delete')"class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></button>
+      <app-loading *ngIf="showSpinner"></app-loading>
     </div>
   </form>
 </div>
-

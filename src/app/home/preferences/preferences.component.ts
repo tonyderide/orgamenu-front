@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {DataService} from '../../shared/services/data.service';
+import {PreferenceAlim} from '../../models/preferenceAlim';
+
+
 
 @Component({
   selector: 'app-preferences',
@@ -7,9 +12,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreferencesComponent implements OnInit {
 
-  constructor() { }
+  preferenceOptions = [
+    'Pâte'
+    , 'Riz'
+    , 'Fromage'
+    , 'Lait'
+    , 'Frite'
+    , 'Viande'
+    , 'Poisson'
+    , 'Légumes'
+    , 'Chocolat'
+    , 'Volaille'
+    , 'Fruit'
+    , 'Pomme de terre'];
 
-  ngOnInit(): void {
+  preferencesForm: FormGroup;
+  preferences: FormArray;
+  @Output() reload = new EventEmitter();
+  preferencesUser: PreferenceAlim[];
+  selectedPreference: string[];
+  preferenceValue: any;
+  constructor(private data: DataService,
+              private formBuilder: FormBuilder) {
   }
 
+  ngOnInit(): void {
+    this.preferencesForm = this.formBuilder.group({
+      preferences: this.formBuilder.array([
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true],
+        [true]
+      ])
+    });
+    this.getPreferences();
+  }
+
+
+  getPreferences() {
+    this.data.getPreferences().subscribe(preferences => {
+      this.preferencesUser = preferences;
+      console.log('getPreference'+JSON.stringify(this.preferencesUser))
+    })
+  }
+
+  getPreferenceArrayControls() {
+    return (this.preferencesForm.get('preferences') as FormArray).controls;
+  }
+
+
+  onSubmit() {
+    this.preferenceValue = this.preferencesForm.get('preferences').value;
+    this.selectedPreference = this.preferenceOptions.filter((pref, index) => this.preferenceValue[index]);
+    console.log('selectedPreference: ' + this.selectedPreference);
+    this.preferencesUser = [];
+    for (let i = 0; i < this.selectedPreference.length; i++){
+      let item = {
+        idPreferenceAliment : i+1,
+        nomPreferenceAliment: this.preferenceOptions[i]
+      };
+      this.preferencesUser.push(item);
+    }
+    this.data.updatePreferencesService(this.preferencesUser)
+      .subscribe(_=> {
+        this.getPreferences();
+        this.reload.emit();
+      })
+
+  }
 }

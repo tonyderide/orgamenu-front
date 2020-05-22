@@ -122,8 +122,13 @@
               "devServerTarget": "orgamenu-front:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "orgamenu-front"
 }

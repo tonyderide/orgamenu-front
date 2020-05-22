@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {formatDate} from "@angular/common";
 import {DataService} from "../../shared/services/data.service";
 import {Recette} from "../../models/recette";
@@ -10,25 +10,29 @@ import {Subscription} from "rxjs";
   templateUrl: './selected-recettetoday.component.html',
   styleUrls: ['./selected-recettetoday.component.scss']
 })
-export class SelectedRecettetodayComponent implements OnInit {
+export class SelectedRecettetodayComponent implements OnInit{
   todaydate= formatDate((new Date()),'dd/MM/yyyy','fr-FR')
   calendrier:Calendrier;
-  calendriers:Calendrier[];
-  private recettes: Recette[];
+  @Input('recettes') recettes:Recette[];
+  @Input('update') update;
 
   constructor(private data: DataService) { }
 
   ngOnInit(): void {
-  this.getCalendrier();
+    this.getCalendrier();
   }
 
 
   getCalendrier(){
-    this.calendrier={'date':this.todaydate}
-    this.data.getCalendriersByDateService(this.calendrier)
-      .subscribe(result=>{
 
+    this.data.getCalendriersByDateService({'date':this.todaydate})
+      .subscribe(result => {this.recettes = [result[0].recettes[0],result[1].recettes[0]]
       })
   }
 
+  deleteChild() {
+    this.data.getCalendriersByDateService({'date':this.todaydate})
+      .subscribe(result => {this.recettes = []//[result[0].recettes[0],result[1].recettes[0]]
+      })
+  }
 }

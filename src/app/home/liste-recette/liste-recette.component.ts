@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Recette} from "../models/recette";
+import {Recette} from "../../models/recette";
 
-import {UserService} from "../shared/services/user.service";
-import {DataService} from "../shared/services/data.service";
+import {DataService} from "../../shared/services/data.service";
 
 
 @Component({
@@ -14,7 +13,7 @@ export class ListeRecetteComponent implements OnInit {
   content: string;
   recettes: Recette[];
 
-  constructor(private userService: UserService, private data: DataService ){ }
+  constructor( private data: DataService ){ }
 
   ngOnInit() {
     this.getRecettes();
