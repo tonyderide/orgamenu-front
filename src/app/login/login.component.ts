@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       setTimeout (() => {
         this.myHome();
-      }, 2000);
+      }, 500);
     }
 
   }
@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
+        if(data){
+          this.router.navigate(['/'])
+        }
       },
       err => {
         this.errorMessage = err.error.message;

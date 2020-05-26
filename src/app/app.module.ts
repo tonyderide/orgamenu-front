@@ -29,6 +29,8 @@ import { AppInitService } from "./app-init.service.ts.service";
 import { APP_INITIALIZER } from '@angular/core';
 import { LoadingComponent } from './loading/loading.component';
 import { PreferencesComponent } from './home/preferences/preferences.component';
+import { AllergenesSelectComponent } from './profile/allergenes-select/allergenes-select.component';
+import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): void => {
@@ -55,16 +57,18 @@ export function initializeApp(appInitService: AppInitService) {
     SelectedRecettetodayComponent,
     ToastComponent,
     LoadingComponent,
-    PreferencesComponent
+    PreferencesComponent,
+    AllergenesSelectComponent,
+    UpdateProfileComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
-    NgbModule,
+    FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     FlexLayoutModule
 
   ],
@@ -75,6 +79,6 @@ export function initializeApp(appInitService: AppInitService) {
     RoleGuardService,
     AppInitService,
     { provide: APP_INITIALIZER,useFactory: initializeApp, deps: [AppInitService], multi: true}],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 export class AppModule { }

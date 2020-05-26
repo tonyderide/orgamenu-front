@@ -16,8 +16,8 @@
       </select>
     </div>
     <div class="selectSoir">
-      <select formControlName="recetteSoir" required
-              class="browser-default custom-select form-control-sm">
+      <select formControlName="recetteSoir"
+              class="browser-default custom-select form-control-sm" required>
         <option  [value]="">Recette Soir</option>
         <option *ngFor="let recette of recettes" [value]="recette.idRecette">
           {{ recette.name }}

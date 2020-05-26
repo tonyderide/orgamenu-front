@@ -14,11 +14,12 @@ import {PreferenceAlim} from '../../models/preferenceAlim';
 const headers = new HttpHeaders().set('Accept', 'application/json');
 const params = new HttpParams();
 const urlEnv =`${environment.apiUrl}`;
+
 @Injectable()
 export class DataService {
 
-  constructor(private http: HttpClient, private feedbackService: FeedbackService) {
-  }
+  constructor(private http: HttpClient, private feedbackService: FeedbackService) { }
+
 /////////////////////////////////////////////////////////////////////////////////////
   // endpoints des recettes
 /////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +37,7 @@ export class DataService {
     );
   }
 
-    getRecettesByUserAndContext():Observable<Recette[]>{
+  getRecettesByUserAndContext():Observable<Recette[]>{
     return this.http.get<Recette[]>(urlEnv+'/recettes/datesuser',{params, headers}).pipe(
       tap(_ => console.log('recuperation liste de recette user de toutes les dates selectionner')), // TODO remove console
       catchError(this.feedbackService.handleError<Recette[]>( 'getRecettesService', []))
@@ -50,16 +51,23 @@ export class DataService {
       catchError(this.feedbackService.handleError<any>('deleteUser'))
     );
   }
+
 /////////////////////////////////////////////////////////////////////////////////////
   //endpoints des users
 /////////////////////////////////////////////////////////////////////////////////////
-  getUserByIDService(id: number): Observable<User>{
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`, {params, headers}).pipe(
+  getUserByUsernameService(username: string): Observable<User>{
+    return this.http.get<User>(`${environment.apiUrl}/users/username/${username}`, {params, headers}).pipe(
       tap( _ => console.log('recuperation d\'un user')), //TODO console.log
-      catchError(this.feedbackService.handleError<User>('getUserByIDService'))
+      catchError(this.feedbackService.handleError<User>('getUserByUsernameService'))
     )
   }
 
+  updateUserService(user: User):Observable<User>{
+    return this.http.put<User>(`${environment.apiUrl}/auth/update`,user, {params, headers}).pipe(
+      tap( _ => console.log('recuperation d\'un user')), //TODO console.log
+      catchError(this.feedbackService.handleError<User>('update User'))
+    )
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////
 //endpoints des calendriers
@@ -104,7 +112,6 @@ export class DataService {
     )}
   }
 
-
   deleteCalendrier(calendrier:Calendrier) {
     const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: calendrier };
 
@@ -137,6 +144,7 @@ export class DataService {
       catchError(this.feedbackService.handleError<Recette>('getRecettesByIdService'))
     );
   }
+
 /////////////////////////////////////////////////////////////////////////////////////
 //endpoints des allergenes
 /////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +153,16 @@ export class DataService {
       catchError(this.feedbackService.handleError<Allergene[]>('getAllergene', []))
     );
   }
+
+  updateAllergenesService(allergenes:Allergene[]):Observable<Allergene[]> {
+
+    const url = `${environment.apiUrl}/allergenes/`;
+    return this.http.post<Allergene[]>(url, allergenes, {headers, params}).pipe(
+      tap(_ => this.feedbackService.info.next(`allergene mise à jour`)),
+      catchError(this.feedbackService.handleError<Allergene[]>('updateAllergenes'))
+    );
+  }
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 //endpoints des preferences

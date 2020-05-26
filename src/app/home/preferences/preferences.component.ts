@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core'
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {DataService} from '../../shared/services/data.service';
 import {PreferenceAlim} from '../../models/preferenceAlim';
+import {TokenStorageService} from '../../shared/services/token-storage.service';
 
 
 
@@ -32,11 +33,15 @@ export class PreferencesComponent implements OnInit {
   preferencesUser: PreferenceAlim[];
   selectedPreference: string[];
   preferenceValue: any;
+  islogged: boolean;
+
   constructor(private data: DataService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit(): void {
+    this.isloggedIn()
     this.preferencesForm = this.formBuilder.group({
       preferences: this.formBuilder.array([
         [true],
@@ -54,8 +59,14 @@ export class PreferencesComponent implements OnInit {
       ])
     });
     this.getPreferences();
+
   }
 
+  isloggedIn():boolean {
+    if (this.tokenStorage.getToken()) {
+      return this.islogged = true;
+    } return this.islogged = false;
+  }
 
   getPreferences() {
     this.data.getPreferences().subscribe(preferences => {
@@ -72,7 +83,6 @@ export class PreferencesComponent implements OnInit {
   onSubmit() {
     this.preferenceValue = this.preferencesForm.get('preferences').value;
     this.selectedPreference = this.preferenceOptions.filter((pref, index) => this.preferenceValue[index]);
-    console.log('selectedPreference: ' + this.selectedPreference);
     this.preferencesUser = [];
     for (let i = 0; i < this.selectedPreference.length; i++){
       let item = {

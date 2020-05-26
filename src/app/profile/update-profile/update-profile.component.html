@@ -1,0 +1,147 @@
+<div class="card card-container" fxLayout.gt-md="row" fxLayout="column" fxLayoutAlign="center none" >
+  <div fxFlex="20">
+    <img id="profile-img"
+         src="./assets/img/avatar_2x.png"
+         class="profile-img-card"/>
+  </div>
+  <div fxFlex="80">
+    <form fxLayout="row wrap"  fxLayoutAlign="center center" fxLayoutGap="10px"
+          *ngIf="!isSuccessful"
+          [formGroup]="updateForm" (ngSubmit)="update()">
+      <div class="form-group" fxFlex="45">
+        <label for="username">Username</label>
+        <input formControlName="username"
+               type="text"
+               id="username"
+               class="form-control"/>
+        <div class="alert-danger" *ngIf="updateForm.get('username').touched && updateForm.get('username').invalid">
+          <div *ngIf="updateForm.get('username').errors.required">Un pseudo est requis</div>
+          <div *ngIf="updateForm.get('username').errors.minlength">
+            Pseudo au moins 3 caractères!
+          </div>
+          <div *ngIf="updateForm.get('username').errors.maxlength">
+            Pseudo au maximum 20 caractères!
+          </div>
+        </div>
+      </div>
+      <div class="form-group" fxFlex="45">
+        <label for="email">Email</label>
+        <input formControlName="email"
+               type="email"
+               class="form-control"
+               name="email"
+               id="email"
+               email/>
+        <div class="alert-danger" *ngIf="updateForm.get('email').touched && updateForm.get('email').invalid">
+          <div *ngIf="updateForm.get('email').errors.required">Un mail est requis!</div>
+          <div *ngIf="updateForm.get('email').errors.email">Le mail doit être valide!</div>
+        </div>
+      </div>
+      <div class="form-group" fxFlex="45">
+        <label for="password">Password</label>
+        <input  formControlName="password"
+                type="password"
+                class="form-control"
+                name="password"
+                id="password"
+                autocomplete=""
+                placeholder="**************"/>
+        <div class="alert-danger" *ngIf="updateForm.get('password').touched && updateForm.get('password').invalid">
+          <div *ngIf="updateForm.get('password').errors.required">Un mot de passe est requis!</div>
+          <div *ngIf="updateForm.get('password').errors.minlength">
+            Le mot de passe doit faire 6 caractères minimum!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="firstname">Prénom</label>
+        <input formControlName="firstname"
+               type="text"
+               class="form-control"
+               name="firstname"
+               id="firstname"/>
+        <div class="alert-danger" *ngIf="updateForm.get('firstname').touched && updateForm.get('firstname').invalid">
+          <div *ngIf="updateForm.get('firstname').errors.required">Un prénom est requis!</div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="lastname">Nom</label>
+        <input formControlName="lastname"
+               type="text"
+               class="form-control"
+               name="lastname"
+               id="lastname"/>
+        <div class="alert-danger" *ngIf="updateForm.get('lastname').touched && updateForm.get('lastname').invalid">
+          <div *ngIf="updateForm.get('lastname').errors.required">Un nom est requis!</div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="size">Taille</label>
+        <input  formControlName="size"
+                type="number"
+                class="form-control"
+                name="size"
+                id="size"/>
+        <div class="alert-danger" *ngIf="updateForm.get('size').touched && updateForm.get('size').invalid">
+          <div *ngIf="updateForm.get('size').errors.required">Une taille est requise!</div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="weight">Poids</label>
+        <input formControlName="weight"
+               type="number"
+               class="form-control"
+               name="weight"
+               id="weight"/>
+        <div class="alert-danger" *ngIf="updateForm.get('weight').touched && updateForm.get('weight').invalid">
+          <div *ngIf="updateForm.get('weight').errors.required">Une taille poids est requis!</div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="age">Âge</label>
+        <input formControlName="age"
+               type="number"
+               class="form-control"
+               name="age"
+               id="age"/>
+        <div class="alert-danger" *ngIf="updateForm.get('age').touched && updateForm.get('age').invalid">
+          <div *ngIf="updateForm.get('age').errors.required">Une taille est requise!</div>
+        </div>
+      </div>
+
+      <div class="form-group" fxFlex="45">
+        <label for="sexe">sexe</label>
+        <select  formControlName="sexe"
+                 class="form-control browser-default custom-select"
+                 name="sexe"
+                 id="sexe">
+          <option value="">Selection du genre</option>
+          <option value="Masculin">Masculin</option>
+          <option value="Féminin">Féminin</option>
+        </select>
+        <div class="alert-danger" *ngIf="updateForm.get('sexe').touched && updateForm.get('sexe').invalid">
+          <div *ngIf="updateForm.get('sexe').errors.required">Masculin ou féminin!</div>
+        </div>
+
+      </div>
+      <div class="form-group" fxFlex="45" fxLayoutAlign="end end">
+        <div id="validate">
+          <button type="submit" class="btn btn-primary btn-block update" >Update</button>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="updateForm.get('sexe').touched && isSignUpFailed">
+        Enregistrement échoué!!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Update réussi !!
+    </div>
+  </div>
+</div>

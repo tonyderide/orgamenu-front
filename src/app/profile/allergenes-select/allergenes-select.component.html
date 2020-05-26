@@ -1,0 +1,20 @@
+<div class= "card card-container carte" fxLayoutAlign="center end">
+  <div class="my-flex-contain"fxLayoutAlign="space-between end">
+
+    <form [formGroup]="allergenesForm" fxLayout="row wrap" >
+      <div class="custom-control custom-switch" fxLayout="row" fxLayoutAlign=" end "
+           *ngFor="let allergene of getAllergeneArrayControls(); let i=index">
+        <input  type="checkbox"
+               class="custom-control-input"
+               id="{{ 'customSwitch' + i }}"
+               [formControl]="allergene">
+        <label fxFlex="70" class="custom-control-label"
+               for="{{ 'customSwitch' + i }}">{{allergeneOptions[i]}}</label>
+      </div>
+    </form>
+    <div>
+      <button (click)='onSubmit()'  class="btn btn-primary" data-dismiss="modal">Sauvegarder</button>
+    </div>
+  </div>
+</div>
+<div class="container p-3 my-3 text-white"></div>

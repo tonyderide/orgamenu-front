@@ -1,177 +1,187 @@
-<div class="col-md-12">
-  <div class="card card-container">
-    <img
-      id="profile-img"
-      src="./assets/img/avatar_2x.png"
-      class="profile-img-card"
-    />
-    <form
-      *ngIf="!isSuccessful"
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
-      <div class="form-group">
-        <label >Username</label>
-        <input
-          type="text"
-          class="form-control"
-          name="username"
-          [(ngModel)]="form.username"
-          required
-          minlength="3"
-          maxlength="20"
-          #username="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors.required">Un pseudo est requis</div>
-          <div *ngIf="username.errors.minlength">
-            Pseudo au moins 3 caractères!
-          </div>
-          <div *ngIf="username.errors.maxlength">
-            UPseudo au maximum 20 caractères!
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          name="email"
-          [(ngModel)]="form.email"
-          required
-          email
-          #email="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-          <div *ngIf="email.errors.required">Un mail est requis!</div>
-          <div *ngIf="email.errors.email">
-            Le mail doit être valide!
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          [(ngModel)]="form.password"
-          required
-          minlength="6"
-          #password="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Un mot de passe est requis!</div>
-          <div *ngIf="password.errors.minlength">
-            Le mot de passe doit faire 6 caractères minimum!
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="firstname">Prénom</label>
-        <input
-          type="text"
-          class="form-control"
-          name="firstname"
-          [(ngModel)]="form.firstname"
-          required
-          #firstname="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
-          <div *ngIf="firstname.errors.required">Un prénom est requis!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="lastname">Nom</label>
-        <input
-          type="text"
-          class="form-control"
-          name="lastname"
-          [(ngModel)]="form.lastname"
-          required
-          #lastname="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
-          <div *ngIf="lastname.errors.required">Un nom est requis!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="size">Taille</label>
-        <input
-          type="number"
-          class="form-control"
-          name="size"
-          [(ngModel)]="form.size"
-          required
-          #size="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && size.invalid">
-          <div *ngIf="size.errors.required">Une taille est requise!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="weight">Poids</label>
-        <input
-          type="number"
-          class="form-control"
-          name="weight"
-          [(ngModel)]="form.weight"
-          required
-          #weight="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && weight.invalid">
-          <div *ngIf="weight.errors.required">Une taille poids est requis!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="age">Âge</label>
-        <input
-          type="number"
-          class="form-control"
-          name="age"
-          [(ngModel)]="form.age"
-          required
-          #age="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && age.invalid">
-          <div *ngIf="age.errors.required">Une taille est requise!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="sexe">sexe</label>
-        <input
-          type="text"
-          class="form-control"
-          name="sexe"
-          [(ngModel)]="form.sexe"
-          required
-          #sexe="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && sexe.invalid">
-          <div *ngIf="sexe.errors.required">Masculin ou féminin!</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
-      </div>
-
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
-      </div>
-    </form>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
+<div class="card card-container" fxLayout="row">
+  <div>
+  <img id="profile-img"
+       src="./assets/img/avatar_2x.png"
+       class="profile-img-card"/>
   </div>
+<div>
+      <form fxLayout="row wrap"  fxLayoutAlign="center center" fxLayoutGap="10px"
+        *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate>
+        <div class="form-group" fxFlex="45">
+          <label >Username</label>
+          <input type="text"
+                 class="form-control"
+                 name="username"
+                 [(ngModel)]="form.username"
+                 required
+                 minlength="3"
+                 maxlength="20"
+                 #username="ngModel"/>
+          <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Un pseudo est requis</div>
+            <div *ngIf="username.errors.minlength">
+              Pseudo au moins 3 caractères!
+            </div>
+            <div *ngIf="username.errors.maxlength">
+              UPseudo au maximum 20 caractères!
+            </div>
+          </div>
+        </div>
+        <div class="form-group" fxFlex="45">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            [(ngModel)]="form.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Un mail est requis!</div>
+            <div *ngIf="email.errors.email">
+              Le mail doit être valide!
+            </div>
+          </div>
+        </div>
+        <div class="form-group" fxFlex="45">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Un mot de passe est requis!</div>
+            <div *ngIf="password.errors.minlength">
+              Le mot de passe doit faire 6 caractères minimum!
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="firstname">Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstname"
+            id="firstname"
+            [(ngModel)]="form.firstname"
+            required
+            #firstname="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && firstname.invalid">
+            <div *ngIf="firstname.errors.required">Un prénom est requis!</div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="lastname">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastname"
+            id="lastname"
+            [(ngModel)]="form.lastname"
+            required
+            #lastname="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && lastname.invalid">
+            <div *ngIf="lastname.errors.required">Un nom est requis!</div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="size">Taille</label>
+          <input
+            type="number"
+            class="form-control"
+            name="size"
+            id="size"
+            [(ngModel)]="form.size"
+            required
+            #size="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && size.invalid">
+            <div *ngIf="size.errors.required">Une taille est requise!</div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="weight">Poids</label>
+          <input
+            type="number"
+            class="form-control"
+            name="weight"
+            id="weight"
+            [(ngModel)]="form.weight"
+            required
+            #weight="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && weight.invalid">
+            <div *ngIf="weight.errors.required">Une taille poids est requis!</div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="age">Âge</label>
+          <input
+            type="number"
+            class="form-control"
+            name="age"
+            id="age"
+            [(ngModel)]="form.age"
+            required
+            #age="ngModel"
+          />
+          <div class="alert-danger" *ngIf="f.submitted && age.invalid">
+            <div *ngIf="age.errors.required">Une taille est requise!</div>
+          </div>
+        </div>
+
+        <div class="form-group" fxFlex="45">
+          <label for="sexe">sexe</label>
+          <select class="form-control browser-default custom-select"type="text"
+                  name="sexe"
+                  id="sexe"
+                  [(ngModel)]="form.sexe"
+                  required
+                  #sexe="ngModel">
+            <option value="">Open this select menu</option>
+            <option value="Masculin">Masculin</option>
+            <option value="Féminin">Féminin</option>
+          </select>
+          <div class="alert-danger" *ngIf="f.submitted && sexe.invalid">
+            <div *ngIf="sexe.errors.required">Masculin ou féminin!</div>
+          </div>
+
+        </div>
+        <div class="form-group" fxFlex="45" fxLayoutAlign="end end">
+          <div id="validate">
+          <button class="btn btn-primary btn-block">Enregistrement</button>
+        </div>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Enregistrement échoué!!<br />{{ errorMessage }}
+        </div>
+      </form>
+
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Vous êtes maintenant enregistré!!
+      </div>
+    </div>
+
 </div>
+

@@ -15,23 +15,14 @@ export class HomeComponent implements OnInit {
   @ViewChild('listRecette')recetteReload:ListeRecetteComponent;
   content: string;
   recettes: Recette[];
-  islogged: boolean=true;
 
-  constructor(private tokenStorage: TokenStorageService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.isloggedIn()
-    console.log(this.tokenStorage.isValidToken())
-  }
-
-  isloggedIn() {
-    if (this.tokenStorage.getToken()) {
-      this.islogged = true;
-    }
   }
 
   reload() {
-
+    window.location.reload();
   }
 }
