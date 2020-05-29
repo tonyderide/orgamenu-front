@@ -6,11 +6,11 @@
        fxLayoutAlign="space-around center">
     <div  class="carte" *ngFor="let recette of recettes" >
       <div class="card">
-        <img class="card-img-top" [src]="recette.imageUrl" [alt]="recette.name" >
+        <img class="card-img-top" [src]="recette?.imageUrl" [alt]="recette.name" >
         <div class="card-img-overlay">
-          <a routerLink="/recette/{{recette.idRecette}}" class="stretched-link"></a>
+          <a routerLink="/recette/{{recette?.idRecette}}" class="stretched-link"></a>
         </div>
-        <h4 class="card-title">{{recette.name}}</h4>
+        <h4 class="card-title">{{recette?.name}}</h4>
       </div>
     </div>
 

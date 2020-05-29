@@ -13,10 +13,9 @@ import {Ingredient} from "../../models/ingredient";
 export class IngredientsComponent implements OnInit{
   private dateDuJour: string;
   private calendrier: Calendrier;
-  ingredientsMidi:Ingredient[];
-  ingredientsSoir:Ingredient[];
+  ingredientsMidi?:Ingredient[];
+  ingredientsSoir?:Ingredient[];
   todayDate=formatDate((new Date()),'dd/MM/yyyy','fr-FR')
-  private recettes: any[];
 
   constructor(private data: DataService) { }
 

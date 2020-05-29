@@ -4,7 +4,6 @@ import {Recette} from "../models/recette";
 import {Calendrier} from "../models/calendrier";
 import {formatDate} from "@angular/common";
 import {SelectedRecettetodayComponent} from "./selected-recettetoday/selected-recettetoday.component";
-import {error} from "@angular/compiler/src/util";
 import {IngredientsComponent} from "./ingredients/ingredients.component";
 
 

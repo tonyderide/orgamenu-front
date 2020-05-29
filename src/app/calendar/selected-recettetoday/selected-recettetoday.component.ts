@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {formatDate} from "@angular/common";
 import {DataService} from "../../shared/services/data.service";
 import {Recette} from "../../models/recette";
@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
   templateUrl: './selected-recettetoday.component.html',
   styleUrls: ['./selected-recettetoday.component.scss']
 })
-export class SelectedRecettetodayComponent implements OnInit{
+export class SelectedRecettetodayComponent implements OnInit, OnDestroy{
   todaydate= formatDate((new Date()),'dd/MM/yyyy','fr-FR')
   calendrier:Calendrier;
   @Input('recettes') recettes:Recette[];
@@ -22,6 +22,9 @@ export class SelectedRecettetodayComponent implements OnInit{
     this.getCalendrier();
   }
 
+  ngOnDestroy(){
+    this.recettes=[]
+  }
 
   getCalendrier(){
 

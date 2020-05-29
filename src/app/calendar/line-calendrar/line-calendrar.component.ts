@@ -8,6 +8,7 @@ import {formatDate} from "@angular/common";
 import {finalize} from "rxjs/operators";
 import {SelectedRecettetodayComponent} from "../selected-recettetoday/selected-recettetoday.component";
 import {IngredientsComponent} from "../ingredients/ingredients.component";
+import {ToasterService} from '../../shared/services/toaster.service';
 
 
 
@@ -31,7 +32,9 @@ export class LineCalendrarComponent implements OnInit {
   todayDate =new Date();
   showSpinner=false;
   private calendrierJourCourant: Calendrier;
-  constructor(private data:DataService, private fb: FormBuilder) {
+  constructor(private data:DataService,
+              private fb: FormBuilder,
+              private toaster:ToasterService) {
     this.form = this.fb.group({
       recetteMidi: [''],
       recetteSoir: ['']
@@ -84,7 +87,7 @@ export class LineCalendrarComponent implements OnInit {
             this.form.controls.recetteMidi.setValue(this.recetteMidi.idRecette)
             this.form.controls.recetteSoir.setValue(this.recetteSoir.idRecette)
           }
-        }
+        },error => this.toaster.showError('la recette n\'est pas sauvegardé','Save')
       )
   }
 
@@ -97,21 +100,27 @@ export class LineCalendrarComponent implements OnInit {
     }
     this.data.saveCalendrierService(this.calendrierJourCourant,idRecetteMidi)
       .subscribe(_=> {
+        this.toaster.showSuccess('la recette est sauvegardé!','Save')
         this.data.saveCalendrierService(
           this.calendrierJourCourant, idRecetteSoir)
-            .subscribe(_=> this.valueUpdate.emit())  })
+            .subscribe(_=> this.valueUpdate.emit())  },
+        error => this.toaster.showError('la recette n\'est pas sauvegardé','Save'))
   }
 
 
   private delete() {
-    this.data.deleteCalendrier(this.calendrierJourCourant).pipe(
-      finalize(()=>console.log('plop'))
-    ).subscribe(_=> {
-      console.log('deleted' + this.calendrierJourCourant.date);
-      this.form.controls.recetteMidi.setValue('');
-      this.form.controls.recetteSoir.setValue('');
-      this.deleteChild.emit();
-    })
+    if (!this.form.controls.recetteMidi.value&&!this.form.controls.recetteMidi.value){
+      console.log(this.form.controls.recetteMidi.value)
+      this.toaster.showError('pas de recette a supprimé!','Save')
+    }else {
+      this.data.deleteCalendrier(this.calendrierJourCourant)
+        .subscribe(_ => {
+          this.toaster.showWarning('les recettes ont été supprimé à cette date!', 'Save');
+          this.form.controls.recetteMidi.setValue('');
+          this.form.controls.recetteSoir.setValue('');
+          this.deleteChild.emit();
+        }, error => this.toaster.showError('les recettes n\'ont pas été supprimé !', 'Save'));
+    }
 
   }
 

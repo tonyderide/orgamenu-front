@@ -31,6 +31,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { PreferencesComponent } from './home/preferences/preferences.component';
 import { AllergenesSelectComponent } from './profile/allergenes-select/allergenes-select.component';
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): void => {
@@ -69,16 +71,18 @@ export function initializeApp(appInitService: AppInitService) {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    FlexLayoutModule
-
+    FlexLayoutModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({timeOut: 3000,
+      positionClass: 'toast-bottom-right',})
   ],
   providers: [authInterceptorProviders,
     DataService,
-    { provide: LOCALE_ID, useValue: "fr-FR" },
     AuthGuardService,
     RoleGuardService,
     AppInitService,
+    { provide: LOCALE_ID, useValue: "fr-FR" },
     { provide: APP_INITIALIZER,useFactory: initializeApp, deps: [AppInitService], multi: true}],
-  // bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

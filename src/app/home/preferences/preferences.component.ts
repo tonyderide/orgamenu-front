@@ -35,6 +35,7 @@ export class PreferencesComponent implements OnInit {
   preferenceValue: any;
   islogged: boolean;
 
+
   constructor(private data: DataService,
               private formBuilder: FormBuilder,
               private tokenStorage: TokenStorageService) {
@@ -71,7 +72,6 @@ export class PreferencesComponent implements OnInit {
   getPreferences() {
     this.data.getPreferences().subscribe(preferences => {
       this.preferencesUser = preferences;
-      console.log('getPreference'+JSON.stringify(this.preferencesUser))
     })
   }
 

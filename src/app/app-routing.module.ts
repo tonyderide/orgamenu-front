@@ -13,11 +13,11 @@ import {RoleGuardService as RoleGuard} from "./shared/services/role-guard.servic
 
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'recette/:id' , component : RecetteDetailComponent },
   { path: 'recette' , component : RecetteDetailComponent,
     canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
   { path: 'calendrier', component: CalendarComponent,
    canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent,
     canActivate: [RoleGuard],
     data: {roleAttendu:["ROLE_USER", "ROLE_ADMIN"]}},
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: "**", redirectTo: "home", pathMatch: "full" },
 ];
 
 @NgModule({

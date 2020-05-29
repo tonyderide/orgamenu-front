@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
+import {Router, RouterLink} from '@angular/router';
+import {ToasterService} from './toaster.service';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
 
@@ -10,7 +12,7 @@ export class TokenStorageService {
   private token: string;
   private decodedToken;
 
-  constructor() { }
+  constructor(private toaster:ToasterService) { }
 
   signOut() {
     window.sessionStorage.clear();
@@ -34,8 +36,29 @@ export class TokenStorageService {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
 
-  public isValidToken(){
-    this.token = sessionStorage.getItem(TOKEN_KEY);
-    this.decodedToken=jwt_decode(this.token);
+  getTokenExpirationDate(token: string): Date {
+    const decoded = jwt_decode(token);
+
+    if (decoded.exp === undefined) return null;
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if(!token)
+      token = this.getToken();
+    if(!token)
+      return true;
+
+    const date = this.getTokenExpirationDate(token);
+    if(date === undefined) return false;
+    //verifie la date d'expiration du token
+    console.log(date.valueOf(),new Date().valueOf()-3000000,  (date.valueOf()-new Date().valueOf()));
+    if((date.valueOf())-new Date().valueOf() < 300000) this.toaster.showInfo('Connection bientot expiré! Vous serez bientôt être deconnecté!', 'Information');
+
+    return !(date.valueOf() > new Date().valueOf());
   }
 }

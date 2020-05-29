@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../shared/services/auth.service";
 import {TokenStorageService} from "../shared/services/token-storage.service";
 import {Router} from "@angular/router";
+import {ToasterService} from '../shared/services/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
-              private router:Router) { }
+              private router:Router,
+              private toaster:ToasterService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      setTimeout (() => {
+      this.toaster.showSuccess('Vous êtes connecté!!','connexion')
         this.myHome();
-      }, 500);
     }
 
   }
@@ -44,6 +45,7 @@ export class LoginComponent implements OnInit {
         }
       },
       err => {
+        this.toaster.showError('la connexion a echoué!!','connexion')
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
