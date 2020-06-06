@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListeRecetteComponent } from './liste-recette.component';
+import { IngredientGlobalComponent } from './ingredient-global.component';
 
-xdescribe('ListeRecetteComponent', () => {
-  let component: ListeRecetteComponent;
-  let fixture: ComponentFixture<ListeRecetteComponent>;
+xdescribe('IngredientGlobalComponent', () => {
+  let component: IngredientGlobalComponent;
+  let fixture: ComponentFixture<IngredientGlobalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListeRecetteComponent ]
+      declarations: [ IngredientGlobalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListeRecetteComponent);
+    fixture = TestBed.createComponent(IngredientGlobalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

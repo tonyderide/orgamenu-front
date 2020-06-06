@@ -9,23 +9,7 @@
         <img src="{{recette?.imageUrl}}" alt="photo de lasagne">
       </div>
       <div class="container" >
-        <div id="scroll" style="overflow-y: scroll;">
-<!--          <p *ngFor="let etape of etapes">{{etape.idEtape}}-{{etape.etape|json}}</p>-->
-          <table class="table table-striped table-dark">
-            <thead>
-            <tr>
-              <th scope="col">n°</th>
-              <th scope="col">etapes</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let etape of etapes">
-              <th scope="row">{{etape.numero}}</th>
-              <td>{{etape.etape|json}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <app-etapes-details [etapes]="etapes"></app-etapes-details>
       </div>
     </div>
   </div>

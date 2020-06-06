@@ -132,8 +132,8 @@ export class DataService {
 /////////////////////////////////////////////////////////////////////////////////////
 //endpoints des ingrédients
 /////////////////////////////////////////////////////////////////////////////////////
-  getIngredients(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${environment.apiUrl}/ingredients/`, {params, headers}).pipe(
+  getIngredientsUser(): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${environment.apiUrl}/ingredients/user`, {params, headers}).pipe(
       catchError(this.feedbackService.handleError<Ingredient[]>('getIngredients', []))
     );
   }

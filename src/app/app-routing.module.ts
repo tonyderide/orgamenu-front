@@ -10,6 +10,7 @@ import {RecetteDetailComponent} from "./recette-detail/recette-detail.component"
 import {CalendarComponent} from "./calendar/calendar.component";
 import {AuthGuardService as AuthGuard} from "./shared/services/auth-guard.service";
 import {RoleGuardService as RoleGuard} from "./shared/services/role-guard.service";
+import {IngredientGlobalComponent} from './ingredient-global/ingredient-global.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
     canActivate: [AuthGuard] },
   { path: 'calendrier', component: CalendarComponent,
    canActivate: [AuthGuard]},
+  { path: 'course', component: IngredientGlobalComponent,
+    canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent,
     canActivate: [AuthGuard] },

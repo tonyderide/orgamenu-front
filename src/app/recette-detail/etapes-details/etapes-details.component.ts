@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Etapes} from '../../models/etapes';
 
 @Component({
   selector: 'app-etapes-details',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./etapes-details.component.scss']
 })
 export class EtapesDetailsComponent implements OnInit {
-
+  @Input("etapes") etapes: Etapes[];
   constructor() { }
 
   ngOnInit(): void {

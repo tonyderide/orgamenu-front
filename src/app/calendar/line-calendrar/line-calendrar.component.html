@@ -1,11 +1,8 @@
-
-<div class="row" >
-  <div class="jourAlpha">
-<!--    <p>{{JourAlph}}: {{JourNum}} </p>-->
-    <p>{{todayDate | date:"EEEE" | titlecase}}: {{todayDate | date:"dd"}} </p>
-
+<div class="row d-flex flex-row justify-content-center " >
+  <div class="jourAlpha align-self-center ">
+    <p>{{todayDate | date:"EEEE" | titlecase}}  {{todayDate | date:"dd"}} :</p>
   </div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit(buttonType)">
+  <form class="d-flex flex-row flex-wrap" [formGroup]="form" (ngSubmit)="onSubmit(buttonType)">
     <div class="selectMidi">
       <select class="browser-default custom-select form-control-sm"
               formControlName="recetteMidi" required>

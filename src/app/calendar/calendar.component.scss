@@ -1,30 +1,14 @@
-calendar{
-  display: flex;
-  flex-direction: column;
-  height: 700px;
-
-}
-
 .date {
   background-color: whitesmoke;
   border: 1px solid #8492A6;
   border-radius: 25px;
-  width: 1096px;
-  height: 350px;
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
 }
+
 .datecol{
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-  justify-content: space-around;
+  min-width: 450px;
 }
 
-.ingredientglobal{
-
-  width: 1096px;
-  height: 300px;
-}
 h4{
   margin-top: 8px;
   margin-bottom: 8px;
@@ -37,13 +21,15 @@ app-ingredients{
   border: black 1px solid;
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
   border-radius: 25px;
-  width: 548px;
+  max-width: 548px;
+  min-width: 450px;
 }
 
 app-selected-recettetoday{
   background-color: #fffffe;
   border-radius: 25px;
-  width: 548px;
+  max-width: 548px;
+  min-width: 450px;
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,1);
 
 }

@@ -32,6 +32,7 @@ export class LineCalendrarComponent implements OnInit {
   todayDate =new Date();
   showSpinner=false;
   private calendrierJourCourant: Calendrier;
+  private calendriers: Calendrier[];
   constructor(private data:DataService,
               private fb: FormBuilder,
               private toaster:ToasterService) {
@@ -80,10 +81,10 @@ export class LineCalendrarComponent implements OnInit {
     }
     this.data.getCalendriersByDateService(this.calendrierJourCourant)
       .subscribe((calendriers: Calendrier[])=> {
+          this.calendriers=calendriers;
           for (let i = 0, len = calendriers.length; i < len; i++) {
             this.recetteMidi = calendriers[0].recettes[0];
             this.recetteSoir = calendriers[1].recettes[0];
-            console.log(this.recetteMidi , this.recetteSoir)
             this.form.controls.recetteMidi.setValue(this.recetteMidi.idRecette)
             this.form.controls.recetteSoir.setValue(this.recetteSoir.idRecette)
           }
@@ -92,36 +93,50 @@ export class LineCalendrarComponent implements OnInit {
   }
 
   saveDate(){
-    let idRecetteMidi:string = this.form.controls.recetteMidi.value;
-    let idRecetteSoir:string = this.form.controls.recetteSoir.value;
-    //Todo delete avant
-    if(this.data.getCalendriersByDateService(this.calendrierJourCourant).subscribe()){
-      this.data.deleteCalendrier(this.calendrierJourCourant).subscribe()
-    }
-    this.data.saveCalendrierService(this.calendrierJourCourant,idRecetteMidi)
-      .subscribe(_=> {
-        this.toaster.showSuccess('la recette est sauvegardé!','Save')
-        this.data.saveCalendrierService(
-          this.calendrierJourCourant, idRecetteSoir)
-            .subscribe(_=> this.valueUpdate.emit())  },
-        error => this.toaster.showError('la recette n\'est pas sauvegardé','Save'))
+    this.data.getCalendriersByDateService(this.calendrierJourCourant)
+      .subscribe((calendriers: Calendrier[])=> {
+        this.calendriers=calendriers;
+        this.deleteCalendriersAtSave(this.calendriers)
+        let idRecetteMidi:string = this.form.controls.recetteMidi.value;
+        let idRecetteSoir:string = this.form.controls.recetteSoir.value;
+        this.data.saveCalendrierService(this.calendrierJourCourant,idRecetteMidi)
+          .subscribe(_=> {
+              this.toaster.showSuccess('la recette est sauvegardé!','Save')
+              this.data.saveCalendrierService(
+                this.calendrierJourCourant, idRecetteSoir)
+                .subscribe(_=> this.valueUpdate.emit())  },
+            error => this.toaster.showError('la recette n\'est pas sauvegardé','Save'))
+      })
   }
 
 
+  //delete si date presente
   private delete() {
     if (!this.form.controls.recetteMidi.value&&!this.form.controls.recetteMidi.value){
-      console.log(this.form.controls.recetteMidi.value)
       this.toaster.showError('pas de recette a supprimé!','Save')
     }else {
-      this.data.deleteCalendrier(this.calendrierJourCourant)
-        .subscribe(_ => {
+      this.deleteCalendriers(this.calendriers)
+    }
+  }
+
+  //delete liste de date
+  private deleteCalendriers(calendriers){
+    this.data.deleteCalendrier(calendriers[0]).subscribe(
+      _=> {
+        this.data.deleteCalendrier(calendriers[1]).subscribe(_=>{
           this.toaster.showWarning('les recettes ont été supprimé à cette date!', 'Save');
           this.form.controls.recetteMidi.setValue('');
           this.form.controls.recetteSoir.setValue('');
           this.deleteChild.emit();
         }, error => this.toaster.showError('les recettes n\'ont pas été supprimé !', 'Save'));
-    }
-
+      }
+    )
   }
+  //delete sans remise à 0 du form
+  private deleteCalendriersAtSave(calendriers){
+    this.data.deleteCalendrier(calendriers[0]).subscribe()
+    this.data.deleteCalendrier(calendriers[1]).subscribe()
+  }
+
 
 }

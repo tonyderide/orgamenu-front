@@ -4,6 +4,7 @@ import {DataService} from '../../shared/services/data.service';
 import {TokenStorageService} from '../../shared/services/token-storage.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {ToasterService} from '../../shared/services/toaster.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -20,7 +21,8 @@ export class UpdateProfileComponent implements OnInit {
   updateForm: FormGroup;
 
   constructor(private data: DataService,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private toasterService:ToasterService) {
     this.updateForm = new FormGroup({
       username:new FormControl(this.user?.username,[Validators.required, Validators.minLength(3),Validators.maxLength(20)]),
       email:new FormControl('', [Validators.required,Validators.email]),
@@ -39,8 +41,9 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   update() {
-    console.log(this.updateForm.value)
-    this.data.updateUserService(this.updateForm.value).subscribe()
+    this.data.updateUserService(this.updateForm.value).subscribe(
+      _=>this.toasterService.showSuccess('Votre profile a été mise à jour!','Profile')
+    )
   }
 
   getUserByUsername(){

@@ -4,26 +4,28 @@ import {DataService} from "../../shared/services/data.service";
 import {Recette} from "../../models/recette";
 import {Calendrier} from "../../models/calendrier";
 import {Subscription} from "rxjs";
+import {TokenStorageService} from '../../shared/services/token-storage.service';
 
 @Component({
   selector: 'app-selected-recettetoday',
   templateUrl: './selected-recettetoday.component.html',
   styleUrls: ['./selected-recettetoday.component.scss']
 })
-export class SelectedRecettetodayComponent implements OnInit, OnDestroy{
+export class SelectedRecettetodayComponent implements OnInit{
   todaydate= formatDate((new Date()),'dd/MM/yyyy','fr-FR')
   calendrier:Calendrier;
   @Input('recettes') recettes:Recette[];
   @Input('update') update;
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService,
+              private token:TokenStorageService) { }
 
   ngOnInit(): void {
-    this.getCalendrier();
-  }
-
-  ngOnDestroy(){
-    this.recettes=[]
+    if (!this.token.getToken()) {
+      this.recettes = [];
+    }else {
+      this.getCalendrier();
+    }
   }
 
   getCalendrier(){

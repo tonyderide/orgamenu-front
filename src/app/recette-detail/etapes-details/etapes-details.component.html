@@ -1,1 +1,19 @@
-<p>etapes-details works!</p>
+<h5>Liste des Etapes:</h5>
+<div class="accordion"  id="accordion">
+  <div class="card" *ngFor="let etape of etapes; let i = index">
+    <div class="card-header" [id]="'heading'+i">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse"
+                [attr.data-target]="'#collapse'+i" aria-expanded="true" aria-controls="'collapse'+i">
+          Etape n°: {{etape.numero}}
+        </button>
+      </h2>
+    </div>
+
+    <div [id]="'collapse'+i" class="collapse hide" aria-labelledby="'heading'+i" data-parent="#accordion">
+      <div class="card-body">
+      {{etape.etape}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,6 +33,8 @@ import { AllergenesSelectComponent } from './profile/allergenes-select/allergene
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EtapesDetailsComponent } from './recette-detail/etapes-details/etapes-details.component';
+import { IngredientGlobalComponent } from './ingredient-global/ingredient-global.component';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): void => {
@@ -62,6 +64,8 @@ export function initializeApp(appInitService: AppInitService) {
     PreferencesComponent,
     AllergenesSelectComponent,
     UpdateProfileComponent,
+    EtapesDetailsComponent,
+    IngredientGlobalComponent,
 
   ],
   imports: [

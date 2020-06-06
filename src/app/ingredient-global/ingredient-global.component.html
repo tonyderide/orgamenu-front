@@ -1,0 +1,8 @@
+<h4>Liste des Ingredients pour les recettes sélectionner cette semaine:</h4>
+<div class="container" >
+  <ul class="list-group" *ngFor="let ingredient of ingredients">
+    <li class="list-group-item"> <input type="radio" aria-label="selection">
+      {{ingredient.quantity}} {{ingredient.nomIngredient}}</li>
+  </ul>
+</div>
+
