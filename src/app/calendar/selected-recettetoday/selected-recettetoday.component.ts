@@ -14,8 +14,9 @@ import {TokenStorageService} from '../../shared/services/token-storage.service';
 export class SelectedRecettetodayComponent implements OnInit{
   todaydate= formatDate((new Date()),'dd/MM/yyyy','fr-FR')
   calendrier:Calendrier;
-  @Input('recettes') recettes:Recette[];
+  @Input('recettes') recettes?:Recette[];
   @Input('update') update;
+  recettesDuJour: boolean= false;
 
   constructor(private data: DataService,
               private token:TokenStorageService) { }
@@ -31,7 +32,10 @@ export class SelectedRecettetodayComponent implements OnInit{
   getCalendrier(){
 
     this.data.getCalendriersByDateService({'date':this.todaydate})
-      .subscribe(result => {this.recettes = [result[0].recettes[0],result[1].recettes[0]]
+      .subscribe(result => {
+        if (result){
+        this.recettes = [result[0].recettes[0],result[1].recettes[0]];
+        this.recettesDuJour=true;}
       })
   }
 

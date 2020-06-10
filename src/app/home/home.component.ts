@@ -3,6 +3,7 @@ import {Recette} from "../models/recette";
 import {TokenStorageService} from "../shared/services/token-storage.service";
 import {IngredientsComponent} from "../calendar/ingredients/ingredients.component";
 import {ListeRecetteComponent} from './liste-recette/liste-recette.component';
+import {Token} from '@angular/compiler';
 
 
 @Component({
@@ -15,11 +16,13 @@ export class HomeComponent implements OnInit {
   @ViewChild('listRecette')recetteReload:ListeRecetteComponent;
   content: string;
   recettes: Recette[];
+  recettesDuJour: boolean=false;
 
-  constructor() {
+  constructor(private token: TokenStorageService) {
   }
 
   ngOnInit() {
+    if (!!this.token.getToken()){this.recettesDuJour=true}
   }
 
   reload() {

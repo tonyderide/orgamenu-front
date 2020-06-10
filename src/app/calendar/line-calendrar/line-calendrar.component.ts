@@ -33,12 +33,13 @@ export class LineCalendrarComponent implements OnInit {
   showSpinner=false;
   private calendrierJourCourant: Calendrier;
   private calendriers: Calendrier[];
+
   constructor(private data:DataService,
               private fb: FormBuilder,
               private toaster:ToasterService) {
     this.form = this.fb.group({
-      recetteMidi: [''],
-      recetteSoir: ['']
+      recetteMidi: ['Recette Midi'],
+      recetteSoir: ['Recette Soir']
     });
   }
 
@@ -57,12 +58,6 @@ export class LineCalendrarComponent implements OnInit {
     // this.getCalendrierByDate();
   }
 
-  //choix du bouton
-  onSubmit(buttonType: string) {
-    if (buttonType==='save'){this.saveDate()}
-    if (buttonType==='delete'){this.delete()}
-
-  }
 
   getRecettes(){
     this.showSpinner=true;
@@ -71,6 +66,13 @@ export class LineCalendrarComponent implements OnInit {
         this.recettes = recettes;
         this.showSpinner = false;
         this.getCalendrierByDate();})
+  }
+
+  //choix du bouton
+  onSubmit(buttonType: string) {
+    if (buttonType==='save'){this.saveDate()}
+    if (buttonType==='delete'){this.delete()}
+
   }
 
   getCalendrierByDate(){

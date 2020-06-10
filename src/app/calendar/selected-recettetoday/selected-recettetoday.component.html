@@ -1,3 +1,4 @@
+<h4 >Recette du {{todaydate}}</h4>
 <div class="container cartes" fxLayout="row"  fxLayoutAlign="center center"  >
   <div class="my-flex-container"
        fxLayout="row wrap"
@@ -10,9 +11,8 @@
         <div class="card-img-overlay">
           <a routerLink="/recette/{{recette?.idRecette}}" class="stretched-link"></a>
         </div>
-        <h4 class="card-title">{{recette?.name}}</h4>
+        <h5 class="card-title mt-3">{{recette?.name}}</h5>
       </div>
     </div>
-
   </div>
 </div>

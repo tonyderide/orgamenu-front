@@ -1,10 +1,9 @@
-<div class="container d-flex flex-md-row flex-column" >
-  <div class="container d-flex flex-column order-md-3 " >
-    <h5>recette du jour</h5>
-    <app-selected-recettetoday></app-selected-recettetoday>
+<div class="container d-flex flex-md-row flex-column justify-content-center" >
+  <div class="container d-flex flex-column order-md-3" *ngIf="recettesDuJour">
+    <app-selected-recettetoday ></app-selected-recettetoday>
   </div>
-  <app-liste-recette class="align-self-center order-md-1 "></app-liste-recette>
-  <app-preferences class=" order-md-2 d-none d-sm-block" (reload)="reload()" ></app-preferences>
+  <app-liste-recette  class="align-self-center order-md-1 " ></app-liste-recette>
+  <app-preferences  class=" order-md-2 d-none d-sm-block" (reload)="reload()" ></app-preferences>
 </div>
 
 

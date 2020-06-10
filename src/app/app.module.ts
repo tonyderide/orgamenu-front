@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EtapesDetailsComponent } from './recette-detail/etapes-details/etapes-details.component';
 import { IngredientGlobalComponent } from './ingredient-global/ingredient-global.component';
 
+//suppression des dates avant celle d'aujourdhui.
 export function initializeApp(appInitService: AppInitService) {
   return (): void => {
     return appInitService.Init();

@@ -24,8 +24,6 @@ export class ListeRecetteComponent implements OnInit {
       this.recettes = recettes;
     });
   }
-  getEtapes(){
 
-  }
 }
 

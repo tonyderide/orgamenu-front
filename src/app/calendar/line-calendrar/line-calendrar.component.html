@@ -20,8 +20,14 @@
           {{ recette.name }}
         </option>
       </select>
-      <button type="submit" [disabled]="form.invalid" (click)="onSubmit('save')" class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="update or save"><i class="fa fa-save"></i></button>
-      <button type="submit" (click)="onSubmit('delete')"class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="delete"><i class="fa fa-trash"></i></button>
+      <button type="submit" [disabled]="form.invalid" (click)="onSubmit('save')"
+              class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="update or save">
+        <i class="fa fa-save"></i>
+      </button>
+      <button type="submit" (click)="onSubmit('delete')"
+              class="btn btn-primary bouton" data-toggle="tooltip" data-placement="top" title="delete">
+        <i class="fa fa-trash"></i>
+      </button>
       <app-loading *ngIf="showSpinner"></app-loading>
     </div>
   </form>

@@ -11,9 +11,6 @@ export class AppInitService {
     console.log('Bienvenu sur Orgamenu')
     this.data.deleteCalendrierInit().subscribe()
     console.log('initialisation des dates')
-    // return new Promise<void>((resolve, reject) => {
-    //
-    // });
   }
 }
 
