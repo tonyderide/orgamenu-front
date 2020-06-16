@@ -3,14 +3,14 @@ import {Calendrier} from "./calendrier";
 import {Ingredient} from "./ingredient";
 
 export interface Recette {
-  idRecette: number;
+  idRecette?: number;
   name: string;
   calorie: number;
   tempPreparation: number;
   tempCuisson: number;
-  userList: [],
+  userList?: [],
   etapes: Array<Etapes>;
-  calendriers: Array<Calendrier>;
+  calendriers?: Array<Calendrier>;
   ingredients:Array<Ingredient>;
   imageUrl:string;
 }

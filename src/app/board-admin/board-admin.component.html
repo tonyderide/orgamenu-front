@@ -1,1 +1,60 @@
-<p>board-admin works!</p>
+<form class="mb-3" [formGroup]="formRecette" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Nom de la recette</label>
+    <input formControlName="name"
+           id="name"
+           type="text"
+           class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="calorie"> Nombre de calorie</label>
+    <input formControlName="calorie"
+           id="calorie"
+           type="number"
+           class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="tempPreparation"> Temps de préparation</label>
+    <input formControlName="tempPreparation"
+           id="tempPreparation"
+           type="number"
+           class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="tempCuisson"> Temps de cuisson</label>
+    <input formControlName="tempCuisson"
+           id="tempCuisson"
+           type="number"
+           class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="imageUrl"> Url de l'image</label>
+    <input formControlName="imageUrl"
+           id="imageUrl"
+           type="url"
+           class="form-control">
+  </div>
+  <div formArrayName="ingredients" *ngFor="let ingredient of formRecette.get('ingredients')['controls'];let i = index">
+    Ingrédient {{i+1}}:
+    <div [formGroupName]="i">
+        <input placeholder="quantité" type="number" id="quantity" formControlName="quantity" />
+        <input placeholder="nom" type="text" id="nomIngredient" formControlName="nomIngredient" />
+        <input placeholder="allergene" type="text" id="allergene" formControlName="allergene" />
+  <button class="btn-xs btn-primary" type="button" (click)="removeIngredientButton(i)">remove</button>
+    </div>
+  </div>
+    <button class="btn-xs btn-primary" type="button" (click)="addIngredientsButton()">add</button>
+
+  <div formArrayName="etapes" *ngFor="let etape of formRecette.get('etapes')['controls'];let i = index">
+    Etapes {{i+1}}:
+    <div [formGroupName]="i">
+        <input placeholder="numero de l'étape" type="number" id="numero" formControlName="numero" />
+        <input fxFill placeholder="contenu de l'étape" type="text" id="etape" formControlName="etape" />
+      <button class="btn-xs btn-primary" type="button" (click)="removeEtapeButton(i)">remove</button>
+    </div>
+  </div>
+      <button class="btn-xs btn-primary" type="button" (click)="addEtapesButton()">add</button>
+  <div class="d-flex justify-content-end">
+  <button class="btn btn-primary" type="submit">Enregistré!</button>
+  </div>
+</form>

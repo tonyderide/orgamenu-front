@@ -12,7 +12,7 @@ import {IngredientsComponent} from "./ingredients/ingredients.component";
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit{
+export class CalendarComponent{
   @ViewChild(SelectedRecettetodayComponent)
   private selectedRecette: SelectedRecettetodayComponent;
   @ViewChild(IngredientsComponent)
@@ -20,13 +20,10 @@ export class CalendarComponent implements OnInit{
   recettes: Recette[];
   calendrier: Calendrier;
   dateDuJour: string;
-  constructor(private data:DataService) { }
-
   indexDateList=[0,1,2,3,4,5,6];
   todayMonth= new Date();
 
-  ngOnInit(): void {
-  }
+  constructor(private data:DataService) { }
 
   getRecetteToday(){
     this.dateDuJour= formatDate((new Date()),'dd/MM/yyyy','fr-FR')

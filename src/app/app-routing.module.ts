@@ -29,8 +29,9 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent,
     canActivate: [AuthGuard] },
   { path: 'admin', component: BoardAdminComponent,
-    canActivate: [RoleGuard],
-    data: {roleAttendu:["ROLE_USER", "ROLE_ADMIN"]}},
+    // canActivate: [RoleGuard],
+    // data: {roleAttendu:["ROLE_USER", "ROLE_ADMIN"]}
+    },
   { path: "**", redirectTo: "home", pathMatch: "full" },
 ];
 

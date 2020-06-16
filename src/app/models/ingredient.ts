@@ -1,5 +1,5 @@
 export interface Ingredient {
-  idIngredient: number;
+  idIngredient?: number;
   quantity: number;
   nomIngredient: string;
   allergene: string;

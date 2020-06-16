@@ -40,7 +40,7 @@ export class DataService {
   getRecettesByUserAndContext():Observable<Recette[]>{
     return this.http.get<Recette[]>(urlEnv+'/recettes/datesuser',{params, headers}).pipe(
       tap(_ => console.log('recuperation liste de recette user de toutes les dates selectionner')), // TODO remove console
-      catchError(this.feedbackService.handleError<Recette[]>( 'getRecettesService', []))
+      catchError(this.feedbackService.handleError<Recette[]>( 'RecettesService', []))
     );
   }
 
@@ -49,6 +49,14 @@ export class DataService {
     return this.http.delete(url, {headers, params}).pipe(
       tap(_ => this.feedbackService.info.next(`user ${id} deleted`)),
       catchError(this.feedbackService.handleError<any>('deleteUser'))
+    );
+  }
+
+  saveRecette(recette:Recette): Observable<Recette>{
+    const url=`${environment.apiUrl}/recettes/`;
+    return this.http.post<Recette>(url,recette, {params,headers}).pipe(
+      tap(_ => this.feedbackService.info.next(`recette créée`)),
+      catchError(this.feedbackService.handleError<Recette>('saveRecetteService'))
     );
   }
 
