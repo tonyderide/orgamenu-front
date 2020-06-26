@@ -5,15 +5,25 @@
   background-color: #fffffe;
   border-radius: 25px;
   max-width: 548px;
-
 }
 p{
   width: 220px;
-
+  margin-bottom: 0px;
 }
 h5{
   text-align: center;
 }
 .myColorClass{
   background-color: #f5f5f5;
+  margin-bottom: 0px;
+}
+@media  (max-width: 640px) {
+  .box1{
+    width: 345px;
+    height: auto;
+  }
+  .centered{
+    margin-left: 60px;
+    margin-bottom: 0px;
+  }
 }

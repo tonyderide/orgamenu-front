@@ -3,6 +3,7 @@ export interface Ingredient {
   quantity: number;
   nomIngredient: string;
   allergene: string;
+  type:number;
   // peremption: Date;
   // calorie: number;
 }

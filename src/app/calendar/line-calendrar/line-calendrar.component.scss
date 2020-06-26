@@ -1,11 +1,4 @@
-//.row{
-//  display: flex;
-//  flex-direction: row;
-//  flex-wrap: nowrap;
-//  justify-content: center;
-//  align-content: stretch;
-//  width:1096px;
-//}
+
 .jourAlpha{
   flex-direction: row;
   display: flex;
@@ -13,45 +6,16 @@
   width: 110px;
 
 }
-//p{
-//  margin-bottom: 8px;
-//  margin-top: 8px;
-//  text-align: left;
-//}
-//form{
-//  display: flex;
-//  flex-direction: row;
-//  justify-content: space-around;
-//
-//}
+
+
 .selectMidi{
-  width: 400px;
+  width: 300px;
   //height: 25px;
 }
 .selectSoir{
   display: flex;
   flex-direction: row;
-  width: 400px;
-  //height: 25px;
+  width: 300px;
+
 }
-//.bouton{
-//  width: 40px;
-//  height: 40px;
-//
-//}
-//
-//@media (max-width: 767.98px) {
-//  .row{
-//    display: flex;
-//    flex-direction: column;
-//    justify-content: center;
-//    align-content: stretch;
-//
-//  }
-//}
-//
-//.myForm{
-//  display: flex;
-//  flex-direction: row;
-//  flex-wrap: wrap;
-//}
+

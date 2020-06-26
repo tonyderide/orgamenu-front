@@ -53,7 +53,7 @@ export class DataService {
   }
 
   saveRecette(recette:Recette): Observable<Recette>{
-    const url=`${environment.apiUrl}/recettes/`;
+    const url=`${environment.apiUrl}/recettes/create`;
     return this.http.post<Recette>(url,recette, {params,headers}).pipe(
       tap(_ => this.feedbackService.info.next(`recette créée`)),
       catchError(this.feedbackService.handleError<Recette>('saveRecetteService'))

@@ -2,20 +2,27 @@ import { Injectable } from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot} from '@angular/router';
 import {TokenStorageService} from "./token-storage.service";
 import {AuthGuardService} from "./auth-guard.service";
+import {ToasterService} from './toaster.service';
 @Injectable()
 export class RoleGuardService implements CanActivate {
 
-  constructor(private auth: AuthGuardService, public router: Router, private tokenStorage :TokenStorageService) {}
+  constructor(private auth: AuthGuardService,
+              public router: Router,
+              private tokenStorage :TokenStorageService,
+              private toasterService:ToasterService) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    const roleAttendu = route.data.expectedRole;
-    const tokenRoles= this.tokenStorage.getUser().roles
-    // decode le token pour recupe le payload
-    console.log(tokenRoles)
-    if ( !this.auth.isAuthenticated() || tokenRoles !== roleAttendu) {
-      this.router.navigate(['login']);
+    const roleAttendu = "ROLE_ADMIN"
+    if (this.tokenStorage.getUser()) {
+      const tokenRoles = this.tokenStorage.getUser().roles;
+      if (  tokenRoles[0] === roleAttendu || tokenRoles[1] === roleAttendu ) {
+        return true;
+      }
+      this.router.navigate(['/login']);
+      this.toasterService.showError('Erreur','Vous devez être administrateur pour vous connecter!')
       return false;
     }
-    return true;
+    this.toasterService.showError('Erreur','Veuillez-vous connectez!')
+    this.router.navigate(['/login']);
   }
 }

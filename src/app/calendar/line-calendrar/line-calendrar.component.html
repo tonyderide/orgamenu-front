@@ -3,7 +3,7 @@
     <p>{{todayDate | date:"EEEE" | titlecase}}  {{todayDate | date:"dd"}} :</p>
   </div>
   <form class="d-flex flex-row flex-wrap" [formGroup]="form" (ngSubmit)="onSubmit(buttonType)">
-    <div class="selectMidi">
+    <div class="selectMidi ml-3">
       <select class="browser-default custom-select form-control-sm"
               formControlName="recetteMidi" required>
         <option  [value]="">Recette Midi</option>
@@ -12,7 +12,7 @@
         </option>
       </select>
     </div>
-    <div class="selectSoir">
+    <div class="selectSoir ml-3">
       <select formControlName="recetteSoir"
               class="browser-default custom-select form-control-sm" required>
         <option  [value]="">Recette Soir</option>

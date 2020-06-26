@@ -1,36 +1,36 @@
-<div id="general" class="d-flex flex-row">
-  <div>
-    <div class="container recette">
-      <div class="title">
+<div class="d-flex flex-column">
+  <div id="general1" class="d-flex flex-column flex-sm-row" fxLayoutGap="20px">
+    <div class="container recette d-flex flex-column flex-sm-row justify-content-between "  >
+      <div class="order-0">
+        <img class="mt-4" src="{{recette?.imageUrl}}" alt="{{recette?.name}}">
+      </div>
+      <div class="title order-1 w-75">
         <h3>{{recette?.name}}</h3>
         <p>Calories: {{recette?.calorie}} par 100 grammes</p>
       </div>
-      <div>
-        <img src="{{recette?.imageUrl}}" alt="photo de lasagne">
+    </div>
+    <!--conteneur temps-->
+    <div class="container tempsGlobal d-flex flex-column ">
+      <div class="container temps">
+        <div class="preparation">
+          <h2>Preparation:</h2>
+          <h4>{{recette?.tempPreparation}} MIN</h4>
+        </div>
+        <div class="cuisson">
+          <h2>Cuisson:</h2>
+          <h4>{{recette?.tempCuisson}} MIN</h4>
+        </div>
       </div>
-      <div class="container" >
-        <app-etapes-details [etapes]="etapes"></app-etapes-details>
+      <!--conteneur ingredients    -->
+      <div class="container ingredients">
+        <div class="ingredients">
+          <h2>Ingrédients:</h2>
+          <div class="ingredient text-center"*ngFor="let ingredient of ingredients">{{ingredient.quantity}} {{ingredient.nomIngredient}}</div>
+        </div>
       </div>
     </div>
   </div>
-<!--conteneur temps-->
-  <div id="general2">
-    <div class="container temps">
-      <div class="preparation">
-        <h2>Preparation:</h2>
-        <h2>{{recette?.tempPreparation}} MIN</h2>
-      </div>
-      <div class="cuisson">
-        <h2>Cuisson:</h2>
-        <h2>{{recette?.tempCuisson}} MIN</h2>
-      </div>
-    </div>
-<!--conteneur ingredients    -->
-    <div class="container ingredients">
-      <div class="ingredients">
-        <h2>Ingrédients:</h2>
-        <div class="ingredient"*ngFor="let ingredient of ingredients">{{ingredient.quantity}} {{ingredient.nomIngredient}}</div>
-      </div>
-    </div>
+  <div class="etapes">
+    <app-etapes-details [etapes]="etapes"></app-etapes-details>
   </div>
 </div>

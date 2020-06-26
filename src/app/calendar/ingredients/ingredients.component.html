@@ -1,14 +1,18 @@
-<div class="box1" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" >
-  <div class="recetteBox" fxLayout="column" >
+<div class="box1 d-flex flex-column flex-sm-row align-content-center" fxLayoutAlign="center"  >
+  <div class="recetteBox align-content-center" fxLayout="column" >
       <h5>recette midi</h5>
-      <p class="m-0" *ngFor="let ingredient of ingredientsMidi;let i = index"
+    <div class="centered ">
+      <p *ngFor="let ingredient of ingredientsMidi;let i = index"
          [class.myColorClass]="i % 2 == 0">
          {{ingredient.quantity}} {{ingredient.nomIngredient}}</p>
+    </div>
   </div>
-  <div class="recetteBox2" fxLayout="column">
+  <div class="recetteBox2 d-flex align-content-center" fxLayout="column">
     <h5>recette soir</h5>
-    <p class="m-0" *ngFor="let ingredient of ingredientsSoir;let i = index"
+    <div class="centered d-flex flex-column ">
+    <p  *ngFor="let ingredient of ingredientsSoir;let i = index"
        [class.myColorClass]="i % 2 == 0">
       {{ingredient.quantity}} {{ingredient.nomIngredient}}</p>
+    </div>
   </div>
 </div>

@@ -29,14 +29,14 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent,
     canActivate: [AuthGuard] },
   { path: 'admin', component: BoardAdminComponent,
-    // canActivate: [RoleGuard],
-    // data: {roleAttendu:["ROLE_USER", "ROLE_ADMIN"]}
+    canActivate: [RoleGuard]
     },
-  { path: "**", redirectTo: "home", pathMatch: "full" },
+  { path: "**", redirectTo: "home", pathMatch: "full" }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class
+AppRoutingModule { }

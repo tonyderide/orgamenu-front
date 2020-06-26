@@ -1,3 +1,10 @@
+<!--<div *ngIf="recettes" class="w-25">-->
+<!--  <select #recette (change)="selectOption($event.target.value)" >-->
+<!--    <option *ngFor="let recette of recettes; let i = index" Value="recettes[i]">-->
+<!--      {{recette.name}}-->
+<!--    </option>-->
+<!--  </select>-->
+<!--</div>-->
 <form class="mb-3" [formGroup]="formRecette" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">Nom de la recette</label>
@@ -5,6 +12,9 @@
            id="name"
            type="text"
            class="form-control">
+    <div *ngIf="submitted && form.name.errors" class="alert-danger">
+      <div *ngIf="form.name.errors.required">Nom requis</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="calorie"> Nombre de calorie</label>
@@ -12,6 +22,9 @@
            id="calorie"
            type="number"
            class="form-control">
+    <div *ngIf="submitted && form.calorie.errors" class="alert-danger">
+      <div *ngIf="form.calorie.errors.required">Nombre de calorie requise</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="tempPreparation"> Temps de préparation</label>
@@ -19,6 +32,9 @@
            id="tempPreparation"
            type="number"
            class="form-control">
+    <div *ngIf="submitted && form.tempPreparation.errors" class="alert-danger">
+      <div *ngIf="form.tempPreparation.errors.required">Durée requise</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="tempCuisson"> Temps de cuisson</label>
@@ -26,6 +42,9 @@
            id="tempCuisson"
            type="number"
            class="form-control">
+    <div *ngIf="submitted && form.tempCuisson.errors" class="alert-danger">
+      <div *ngIf="form.tempCuisson.errors.required">Durée requise</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="imageUrl"> Url de l'image</label>
@@ -36,25 +55,49 @@
   </div>
   <div formArrayName="ingredients" *ngFor="let ingredient of formRecette.get('ingredients')['controls'];let i = index">
     Ingrédient {{i+1}}:
-    <div [formGroupName]="i">
-        <input placeholder="quantité" type="number" id="quantity" formControlName="quantity" />
-        <input placeholder="nom" type="text" id="nomIngredient" formControlName="nomIngredient" />
-        <input placeholder="allergene" type="text" id="allergene" formControlName="allergene" />
-  <button class="btn-xs btn-primary" type="button" (click)="removeIngredientButton(i)">remove</button>
+    <div [formGroupName]="i" class="d-flex flex-row ">
+      <div class="d-flex flex-column w-25">
+        <input aria-label="quantité" placeholder="quantité" type="number" id="quantity" formControlName="quantity" />
+        <div *ngIf="submitted && ingredients.controls[i].get('quantity').errors" class="alert-danger">
+          <div class="" *ngIf="ingredients.controls[i].get('quantity').errors?.required">Quantité requise</div>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-25">
+        <input aria-label="nom quantité+nom" placeholder="nom quantité+nom" type="text" id="nomIngredient" formControlName="nomIngredient" />
+        <div *ngIf="submitted && ingredients.controls[i].get('nomIngredient').errors"
+             class="alert-danger">
+          <div class="" *ngIf="ingredients.controls[i].get('nomIngredient').errors?.required">Nom requis</div>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-25">
+        <input aria-label="allergene" placeholder="Allergène" type="number" id="allergene" formControlName="allergene" />
+        <div *ngIf="submitted && ingredients.controls[i].get('allergene').errors"
+             class="alert-danger">
+          <div class="" *ngIf="ingredients.controls[i].get('allergene').errors?.required">Allergène requis</div>
+        </div>
+      </div>
+      <div class="d-flex flex-column w-25">
+        <input aria-label="allergene" placeholder="Type de préférence" type="number" id="type" formControlName="type" />
+        <div *ngIf="submitted && ingredients.controls[i].get('type').errors"
+             class="alert-danger">
+          <div class="" *ngIf="ingredients.controls[i].get('type').errors?.required">Type de préférence</div>
+        </div>
+      </div>
+      <button class="btn-xs btn-primary" type="button" (click)="removeIngredientButton(i)">remove</button>
     </div>
-  </div>
     <button class="btn-xs btn-primary" type="button" (click)="addIngredientsButton()">add</button>
 
-  <div formArrayName="etapes" *ngFor="let etape of formRecette.get('etapes')['controls'];let i = index">
-    Etapes {{i+1}}:
-    <div [formGroupName]="i">
-        <input placeholder="numero de l'étape" type="number" id="numero" formControlName="numero" />
-        <input fxFill placeholder="contenu de l'étape" type="text" id="etape" formControlName="etape" />
-      <button class="btn-xs btn-primary" type="button" (click)="removeEtapeButton(i)">remove</button>
+    <div formArrayName="etapes" *ngFor="let etape of formRecette.get('etapes')['controls'];let i = index">
+      Etapes {{i+1}}:
+      <div [formGroupName]="i" class="d-flex flex-row">
+        <input class="w-25" placeholder="numero de l'étape" type="number" id="numero" formControlName="numero" />
+        <input class="w-75" placeholder="contenu de l'étape" type="text" id="etape" formControlName="etape" />
+        <button class="btn-xs btn-primary" type="button" (click)="removeEtapeButton(i)">remove</button>
+      </div>
     </div>
-  </div>
-      <button class="btn-xs btn-primary" type="button" (click)="addEtapesButton()">add</button>
-  <div class="d-flex justify-content-end">
-  <button class="btn btn-primary" type="submit">Enregistré!</button>
+    <button class="btn-xs btn-primary" type="button" (click)="addEtapesButton()">add</button>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary" type="submit">Enregistré!</button>
+    </div>
   </div>
 </form>

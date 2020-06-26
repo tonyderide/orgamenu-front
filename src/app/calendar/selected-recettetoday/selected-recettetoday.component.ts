@@ -3,7 +3,6 @@ import {formatDate} from "@angular/common";
 import {DataService} from "../../shared/services/data.service";
 import {Recette} from "../../models/recette";
 import {Calendrier} from "../../models/calendrier";
-import {Subscription} from "rxjs";
 import {TokenStorageService} from '../../shared/services/token-storage.service';
 
 @Component({
@@ -30,7 +29,6 @@ export class SelectedRecettetodayComponent implements OnInit{
   }
 
   getCalendrier(){
-
     this.data.getCalendriersByDateService({'date':this.todaydate})
       .subscribe(result => {
         if (result){
